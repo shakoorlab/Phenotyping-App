@@ -4,19 +4,19 @@ import heart from "../assets/icons/heart.png";
 import left from "../assets/icons/left.png";
 import search from "../assets/icons/search.png";
 
-import logo from "../assets/images/logo.png";
-import nft01 from "../assets/images/nft01.png";
-import nft02 from "../assets/images/nft02.jpeg";
-import nft03 from "../assets/images/nft03.jpeg";
-import nft04 from "../assets/images/nft04.jpeg";
-import nft05 from "../assets/images/nft05.jpeg";
-import nft06 from "../assets/images/nft06.jpeg";
-import nft07 from "../assets/images/nft07.jpeg";
+import logo from "../assets/images1/logo.png";
+import nft01 from "../assets/images1/nft01.png";
+import nft02 from "../assets/images1/nft02.jpeg";
+import nft03 from "../assets/images1/nft03.jpeg";
+import nft04 from "../assets/images1/nft04.jpeg";
+import nft05 from "../assets/images1/nft05.jpeg";
+import nft06 from "../assets/images1/nft06.jpeg";
+import nft07 from "../assets/images1/nft07.jpeg";
 
-import person01 from "../assets/images/person01.png";
-import person02 from "../assets/images/person02.png";
-import person03 from "../assets/images/person03.png";
-import person04 from "../assets/images/person04.png";
+import person01 from "../assets/images1/person01.png";
+import person02 from "../assets/images1/person02.png";
+import person03 from "../assets/images1/person03.png";
+import person04 from "../assets/images1/person04.png";
 
 export default {
   badge,
