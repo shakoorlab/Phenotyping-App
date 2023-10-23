@@ -1,6 +1,8 @@
 import React from "react";
-import { Text } from "react-native";
-
+import { useState } from "react";
+import { View, Text, FlatList, SafeArea } from "react-native";
+import { Card, HomeHeader, FocusedStatusBar } from "../../components";
+import { COLORS, NFTData } from "../../constants";
 export default function FieldSelectionScreen() {
-  return <Text>Hello</Text>;
+  return <SafeAreaView style={{ flex: 1 }}></SafeAreaView>;
 }
