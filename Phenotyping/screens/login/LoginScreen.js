@@ -6,6 +6,10 @@ import { useNavigation } from "@react-navigation/native";
 
 export default function LoginScreen() {
   const navigation = useNavigation();
+
+  const handleLogin = () => {
+    navigation.navigate("FieldSelection");
+  };
   return (
     <View className="bg-white h-full w-full">
       <StatusBar style="light" />
@@ -15,20 +19,6 @@ export default function LoginScreen() {
         className="h-full w-full absolute"
         source={require("../../assets/images/2.png")}
       />
-
-      {/* images  */}
-      {/* <View className="flex-row justify-around w-full absolute">
-        <Animated.Image
-          className="h-[225] w-[90]"
-          entering={FadeInUp.delay(200).duration(1000).springify().damping(3)}
-          source={require("../../assets/images/light.png")}
-        />
-        <Animated.Image
-          className="h-[160] w-[65]"
-          entering={FadeInUp.delay(400).duration(1000).springify().damping(3)}
-          source={require("../../assets/images/light.png")}
-        />
-      </View> */}
 
       {/* title and form */}
       <View className="h-full w-full flex justify-around pt-40 pb-10">
@@ -64,6 +54,7 @@ export default function LoginScreen() {
           {/* Login button */}
           <Animated.View className="w-full">
             <TouchableOpacity
+              onPress={() => navigation.push("FieldSelection")}
               className="w-full bg-sky-400 p-3 rounded-2xl mb-3"
               entering={FadeInDown.delay(400).duration(1000).springify()}
             >

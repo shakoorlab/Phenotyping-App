@@ -70,6 +70,7 @@ export default function SignupScreen() {
           {/* Login button */}
           <Animated.View className="w-full">
             <TouchableOpacity
+              onPress={() => navigation.push("FieldSelection")}
               className="w-full bg-sky-400 p-3 rounded-2xl mb-3"
               entering={FadeInDown.delay(600).duration(1000).springify()}
             >

@@ -4,6 +4,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import LoginScreen from "./screens/login/LoginScreen";
 import SignupScreen from "./screens/signup/SignupScreen";
 import OnboardingScreen from "./screens/onboarding/OnboardingScreen";
+import FieldSelectionScreen from "./screens/fieldSelection/FieldSelection";
 
 const Stack = createNativeStackNavigator();
 
@@ -18,6 +19,7 @@ function App() {
         <Stack.Screen name="Onboarding" component={OnboardingScreen} />
         <Stack.Screen name="Login" component={LoginScreen} />
         <Stack.Screen name="SignUp" component={SignupScreen} />
+        <Stack.Screen name="FieldSelection" component={FieldSelectionScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
