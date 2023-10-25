@@ -1,4 +1,6 @@
-import { View, Text, TouchableOpacity, Image } from "react-native";
+import React from "react";
+import { TouchableOpacity, Text, Image } from "react-native";
+
 import { COLORS, SIZES, FONTS, SHADOWS } from "../constants";
 
 export const CircleButton = ({ imgURL, handlePress, ...props }) => {
@@ -20,16 +22,35 @@ export const CircleButton = ({ imgURL, handlePress, ...props }) => {
       <Image
         source={imgURL}
         resizeMode="contain"
-        style={{ width: 24, height: 24 }} //!make this responsive
+        style={{ width: 24, height: 24 }}
       />
     </TouchableOpacity>
   );
 };
 
-export const RectButton = () => {
+export const RectButton = ({ minWidth, fontSize, handlePress, ...props }) => {
   return (
-    <View>
-      <Text>Button</Text>
-    </View>
+    <TouchableOpacity
+      style={{
+        backgroundColor: COLORS.primary,
+        padding: SIZES.small,
+        borderRadius: SIZES.extraLarge,
+        minWidth: minWidth,
+        ...SHADOWS.light,
+        ...props,
+      }}
+      onPress={handlePress}
+    >
+      <Text
+        style={{
+          fontFamily: FONTS.semiBold,
+          fontSize: fontSize,
+          color: COLORS.white,
+          textAlign: "center",
+        }}
+      >
+        Select
+      </Text>
+    </TouchableOpacity>
   );
 };

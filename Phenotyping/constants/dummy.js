@@ -3,8 +3,8 @@ import assets from "./assets";
 const NFTData = [
   {
     id: "NFT-01",
-    name: "PeeDee Research Center",
-    creator: "Putri Intan",
+    name: "HPI Diversity Panel",
+    creator: "PeeDee Research Center",
     price: 4.25,
     description:
       "The action painter abstract expressionists were directly influenced by automatism. Pollock channelled this into producing gestural. The action painter abstract expressionists were directly influenced by automatism. Pollock channelled this into producing gestural. The action painter abstract expressionists were directly influenced by automatism. Pollock channelled this into producing gestural.",
@@ -36,7 +36,7 @@ const NFTData = [
   {
     id: "NFT-02",
     name: "HPI Diversity Panel",
-    creator: "Siti Nurhaliza",
+    creator: "Fischer Farm",
     price: 7.25,
     description:
       "The action painter abstract expressionists were directly influenced by automatism. Pollock channelled this into producing gestural. Nulla sed velit erat vitae leo sem inceptos diam fames arcu hendrerit, quis ultrices in eleifend posuere ipsum conubia porttitor felis.",
@@ -54,7 +54,7 @@ const NFTData = [
   {
     id: "NFT-03",
     name: "Climate Smart",
-    creator: "Elisabeth aho",
+    creator: "Fischer Farm",
     price: 95.25,
     description:
       "The action painter abstract expressionists were directly influenced by automatism. Pollock channelled this into producing gestural. Lorem ipsum dolor sit amet consectetur adipiscing elit consequat accumsan sapien, lectus convallis malesuada odio curae habitasse dignissim nascetur. Nulla sed velit erat vitae leo sem inceptos diam fames arcu hendrerit, quis ultrices in eleifend posuere ipsum conubia porttitor felis. Lorem ipsum dolor sit amet consectetur adipiscing elit consequat accumsan sapien, lectus convallis malesuada odio curae habitasse dignissim nascetur. Nulla sed velit erat vitae leo sem inceptos diam fames arcu hendrerit, quis ultrices in eleifend posuere ipsum conubia porttitor felis.",
