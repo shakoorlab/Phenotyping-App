@@ -1,4 +1,3 @@
-import React from "react";
 import { useState } from "react";
 import { View, Text, FlatList, SafeAreaView } from "react-native";
 import { Card, HomeHeader, FocusedStatusBar } from "../../components";
