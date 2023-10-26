@@ -2,6 +2,7 @@ import assets from "./assets";
 import { COLORS, SHADOWS, SIZES, FONTS } from "./theme";
 import { NFTData } from "./dummy";
 import { CircleButton, RectButton } from "../components/Button";
+import { SubInfo } from "../components/SubInfo";
 
 export {
   assets,
@@ -12,4 +13,5 @@ export {
   NFTData,
   CircleButton,
   RectButton,
+  SubInfo,
 };
