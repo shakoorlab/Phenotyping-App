@@ -7,6 +7,7 @@ import OnboardingScreen from "./screens/onboarding/OnboardingScreen";
 import FieldSelectionScreen from "./screens/fieldSelection/FieldSelection";
 import Details from "./screens/FieldDetails/Details";
 import { useFonts } from "expo-font";
+import WeatherLanding from "./screens/weather/WeatherLanding";
 
 const Stack = createNativeStackNavigator();
 
@@ -33,6 +34,7 @@ function App() {
         <Stack.Screen name="SignUp" component={SignupScreen} />
         <Stack.Screen name="FieldSelection" component={FieldSelectionScreen} />
         <Stack.Screen name="Details" component={Details} />
+        <Stack.Screen name="Weather" component={WeatherLanding} />
       </Stack.Navigator>
     </NavigationContainer>
   );

@@ -34,16 +34,16 @@ const DetailsHeader = ({ data, navigation }) => (
     />
 
     <CircleButton
-      imgUrl={assets.heart}
+      imgUrl={assets.storm} //originally was assets.heart
       right={15}
       top={StatusBar.currentHeight + 10}
+      handlePress={() => navigation.navigate("Weather")}
     />
   </View>
 );
 
 const Details = ({ route, navigation }) => {
   const { data } = route.params;
-
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <FocusedStatusBar
@@ -64,7 +64,12 @@ const Details = ({ route, navigation }) => {
           zIndex: 1,
         }}
       >
-        <RectButton minWidth={170} fontSize={SIZES.large} {...SHADOWS.dark} />
+        <RectButton
+          minWidth={170}
+          fontSize={SIZES.large}
+          {...SHADOWS.dark}
+          // onPress={() => navigation.navigate("Weather")}
+        />
       </View>
 
       <FlatList
