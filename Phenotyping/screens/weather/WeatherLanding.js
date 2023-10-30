@@ -33,7 +33,7 @@ const WeatherLanding = () => {
         className="absolute h-full w-full"
       />
       <SafeAreaView className="flex flex-1">
-        {/* ------------------------------------------- search section --------------------------------------- */}
+        {/* ------------------------------------------- search section button --------------------------------------- */}
         <View style={{ height: "7%" }} className="mx-4 relative z-50">
           <View
             className="flex-row justify-end items-center rounded-full"
@@ -58,7 +58,7 @@ const WeatherLanding = () => {
             </TouchableOpacity>
           </View>
 
-          {/* ------------------------------------------- search section --------------------------------------- */}
+          {/* ------------------------------------------- search section button --------------------------------------- */}
           {/*  */}
           {/*  */}
           {/*  */}
@@ -92,6 +92,28 @@ const WeatherLanding = () => {
         {/*  */}
         {/*  */}
         {/* ------------------------------------------- forecast section --------------------------------------------------- */}
+        <View className="mx-4 justify-around flex-1 mb-2">
+          {/* location */}
+          <Text className="text-white text-center text-2xl font-bold">
+            Saint Louis,
+            <Text className="text-lg font-semibold text-gray-300">
+              Missouri
+            </Text>
+          </Text>
+          {/* weather image */}
+          <View className="flex-row justify-center">
+            <Image
+              source={require("../../assets/images/weather/partlycloudy.png")}
+              className="w-52 h-52"
+            />
+          </View>
+          {/* degree celcius */}
+          <View className="space-y-2">
+            <Text className="text-center font-bold text-white text-6xl ml-5">
+              23
+            </Text>
+          </View>
+        </View>
       </SafeAreaView>
     </View>
   );

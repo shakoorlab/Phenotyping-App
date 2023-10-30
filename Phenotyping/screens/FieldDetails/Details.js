@@ -68,7 +68,7 @@ const Details = ({ route, navigation }) => {
           minWidth={170}
           fontSize={SIZES.large}
           {...SHADOWS.dark}
-          // onPress={() => navigation.navigate("Weather")}
+          handlePress={() => navigation.navigate("PlotRowSelection")}
         />
       </View>
 
@@ -95,7 +95,7 @@ const Details = ({ route, navigation }) => {
                     color: COLORS.primary,
                   }}
                 >
-                  Current Bid
+                  Last Collected:
                 </Text>
               )}
             </View>
