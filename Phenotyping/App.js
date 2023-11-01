@@ -9,6 +9,7 @@ import Details from "./screens/FieldDetails/Details";
 import { useFonts } from "expo-font";
 import WeatherLanding from "./screens/weather/WeatherLanding";
 import PlotRowSelection from "./screens/plotRow/PlotRowSelection";
+import { QuestionsHeader } from "./components";
 
 const Stack = createNativeStackNavigator();
 

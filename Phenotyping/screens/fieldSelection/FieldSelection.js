@@ -23,7 +23,7 @@ const FieldSelectionScreen = () => {
       setnftData(NFTData);
     }
   };
-  //-------------------------------- search bar logic ---------------------------------
+  //-------------------------------- search bar logic end ---------------------------------
   //
   //
 

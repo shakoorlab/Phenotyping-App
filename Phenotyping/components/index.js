@@ -4,6 +4,7 @@ import HomeHeader from "./HomeHeader";
 import DetailsDesc from "./DetailsDesc";
 import DetailsBid from "./DetailsBid";
 import { CircleButton, RectButton } from "./Button";
+import DatasheetHeader from "./Datasheet/DatasheetHeader";
 
 export {
   HomeHeader,
@@ -13,4 +14,5 @@ export {
   DetailsDesc,
   CircleButton,
   RectButton,
+  DatasheetHeader,
 };

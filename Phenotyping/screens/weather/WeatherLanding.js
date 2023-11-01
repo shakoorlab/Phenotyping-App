@@ -5,11 +5,15 @@ import {
   Image,
   SafeAreaView,
   TouchableOpacity,
+  ScrollView,
 } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import React, { useState } from "react";
 import { theme } from "./theme";
-import { MagnifyingGlassIcon } from "react-native-heroicons/outline";
+import {
+  MagnifyingGlassIcon,
+  CalendarDaysIcon,
+} from "react-native-heroicons/outline";
 import { MapPinIcon } from "react-native-heroicons/solid";
 
 const WeatherLanding = () => {
@@ -87,7 +91,7 @@ const WeatherLanding = () => {
             </View>
           ) : null}
         </View>
-        {/* ------------------------------------------- search section functionality --------------------------------------- */}
+        {/* ------------------------------------------- search section functionality end ------------------------------------ */}
         {/*  */}
         {/*  */}
         {/*  */}
@@ -110,10 +114,136 @@ const WeatherLanding = () => {
           {/* degree celcius */}
           <View className="space-y-2">
             <Text className="text-center font-bold text-white text-6xl ml-5">
-              23
+              23&#176;
+            </Text>
+            <Text className="text-center text-white text-xl tracking-widest">
+              Partly cloudy
             </Text>
           </View>
+          {/* ------------------------------------------- forecast section end ------------------------------------------------ */}
+          {/*  */}
+          {/*  */}
+          {/*  */}
+          {/* ------------------------------------------------other stats-----------------------------*/}
+          <View className="flex-row justify-between mx-4">
+            <View className="flex-row space-x-2 items-center">
+              <Image
+                source={require("../../assets/images/weather/wind.png")}
+                className="h-6 w-6"
+              />
+              <Text className="text-white font-semibold text-base">22km</Text>
+            </View>
+
+            <View className="flex-row space-x-2 items-center">
+              <Image
+                source={require("../../assets/images/weather/drop.png")}
+                className="h-6 w-6"
+              />
+              <Text className="text-white font-semibold text-base">22%</Text>
+            </View>
+
+            <View className="flex-row space-x-2 items-center">
+              <Image
+                source={require("../../assets/images/weather/sun.png")}
+                className="h-6 w-6"
+              />
+              <Text className="text-white font-semibold text-base">
+                6:05 AM
+              </Text>
+            </View>
+          </View>
         </View>
+
+        {/* ------------------------------------------------other stats end--------------------------*/}
+        {/*  */}
+        {/*  */}
+        {/*  */}
+        {/* ----------------------------------------------forecast for next days ------------------ */}
+        <View className="mb-2 space-y-2">
+          <View className="flex-row items-center mx-5 space-x-2">
+            <CalendarDaysIcon size="22" color="white" />
+            <Text className="text-white text-base"> Daily forecast</Text>
+          </View>
+          <ScrollView
+            horizontal
+            contentContainerStyle={{ paddingHorizontal: 15 }}
+            showsHorizontalScrollIndicator={false}
+          >
+            {/* Monday */}
+            <View
+              className="flex justify-center items-center w-24 rounded-3xl py-3 space-y-1 mr-4"
+              style={{ backgroundColor: theme.bgWhite(0.15) }}
+            >
+              <Image
+                source={require("../../assets/images/weather/heavyrain.png")}
+                className="h-11 w-11"
+              />
+              <Text className="text-white">Monday</Text>
+              <Text className="text-white text-xl font-semibold">13&#176;</Text>
+            </View>
+            {/* Monday */}
+            <View
+              className="flex justify-center items-center w-24 rounded-3xl py-3 space-y-1 mr-4"
+              style={{ backgroundColor: theme.bgWhite(0.15) }}
+            >
+              <Image
+                source={require("../../assets/images/weather/heavyrain.png")}
+                className="h-11 w-11"
+              />
+              <Text className="text-white">Monday</Text>
+              <Text className="text-white text-xl font-semibold">13&#176;</Text>
+            </View>
+            {/* Monday */}
+            <View
+              className="flex justify-center items-center w-24 rounded-3xl py-3 space-y-1 mr-4"
+              style={{ backgroundColor: theme.bgWhite(0.15) }}
+            >
+              <Image
+                source={require("../../assets/images/weather/heavyrain.png")}
+                className="h-11 w-11"
+              />
+              <Text className="text-white">Monday</Text>
+              <Text className="text-white text-xl font-semibold">13&#176;</Text>
+            </View>
+            {/* Monday */}
+            <View
+              className="flex justify-center items-center w-24 rounded-3xl py-3 space-y-1 mr-4"
+              style={{ backgroundColor: theme.bgWhite(0.15) }}
+            >
+              <Image
+                source={require("../../assets/images/weather/heavyrain.png")}
+                className="h-11 w-11"
+              />
+              <Text className="text-white">Monday</Text>
+              <Text className="text-white text-xl font-semibold">13&#176;</Text>
+            </View>
+            {/* Monday */}
+            <View
+              className="flex justify-center items-center w-24 rounded-3xl py-3 space-y-1 mr-4"
+              style={{ backgroundColor: theme.bgWhite(0.15) }}
+            >
+              <Image
+                source={require("../../assets/images/weather/heavyrain.png")}
+                className="h-11 w-11"
+              />
+              <Text className="text-white">Monday</Text>
+              <Text className="text-white text-xl font-semibold">13&#176;</Text>
+            </View>
+            {/* Monday */}
+            <View
+              className="flex justify-center items-center w-24 rounded-3xl py-3 space-y-1 mr-4"
+              style={{ backgroundColor: theme.bgWhite(0.15) }}
+            >
+              <Image
+                source={require("../../assets/images/weather/heavyrain.png")}
+                className="h-11 w-11"
+              />
+              <Text className="text-white">Monday</Text>
+              <Text className="text-white text-xl font-semibold">13&#176;</Text>
+            </View>
+          </ScrollView>
+        </View>
+        {/* ----------------------------------------------forecast for next days end --------------- */}
       </SafeAreaView>
     </View>
   );
