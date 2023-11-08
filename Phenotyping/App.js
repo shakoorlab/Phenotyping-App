@@ -9,7 +9,7 @@ import Details from "./screens/FieldDetails/Details";
 import { useFonts } from "expo-font";
 import WeatherLanding from "./screens/weather/WeatherLanding";
 import PlotRowSelection from "./screens/plotRow/PlotRowSelection";
-import { QuestionsHeader } from "./components";
+import Datasheet from "./components/Datasheet/EOSDatasheet";
 
 const Stack = createNativeStackNavigator();
 
@@ -38,6 +38,7 @@ function App() {
         <Stack.Screen name="Details" component={Details} />
         <Stack.Screen name="Weather" component={WeatherLanding} />
         <Stack.Screen name="PlotRowSelection" component={PlotRowSelection} />
+        <Stack.Screen name="Datasheet" component={Datasheet} />
       </Stack.Navigator>
     </NavigationContainer>
   );

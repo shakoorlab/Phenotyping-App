@@ -1,44 +1,25 @@
 import { useState } from "react";
-import { View, FlatList, SafeAreaView } from "react-native";
-import { Card, HomeHeader, FocusedStatusBar } from "../../components";
-import { COLORS, NFTData } from "../../constants";
+import { View, FlatList, SafeAreaView, Text } from "react-native";
+import { Card, FocusedStatusBar } from "../../components";
+import { COLORS, SIZES } from "../../constants";
 import { StatusBar } from "expo-status-bar";
-import EOSDatasheet from "../../components/Datasheet/EOSDatasheet";
+import FieldRowHeader from "../../components/Headers/FieldRowHeader";
+import RowsFilter from "../../components/RowsFilter";
+import PlotCard from "../../components/PlotCard";
 
 const FieldSelectionScreen = () => {
-  //
-  //
-  //-------------------------------- search bar logic ---------------------------------
-  const [nftData, setnftData] = useState(NFTData);
-
-  const handleSearch = (value) => {
-    if (!value.length) return setnftData(NFTData);
-
-    const filteredData = NFTData.filter((item) =>
-      item.name.toLowerCase().includes(value.toLowerCase())
-    );
-
-    if (filteredData.length) {
-      setnftData(filteredData);
-    } else {
-      setnftData(NFTData);
-    }
-  };
-  //-------------------------------- search bar logic end ---------------------------------
-  //
-  //
-
   return (
     <SafeAreaView style={{ flex: 1 }}>
-      <EOSDatasheet />
-      {/* <FocusedStatusBar background={COLORS.primary} />
+      <FocusedStatusBar background={COLORS.primary} />
       <StatusBar style="dark" />
       <View style={{ flex: 1 }}>
         <View style={{ zIndex: 0 }}>
           <FlatList
-            ListHeaderComponent={<HomeHeader onSearch={handleSearch} />}
+            showsVerticalScrollIndicator={false}
+            ListHeaderComponent={<FieldRowHeader />}
           />
         </View>
+
         <View
           style={{
             position: "absolute",
@@ -48,12 +29,42 @@ const FieldSelectionScreen = () => {
             left: 0,
             zIndex: -1,
           }}
-        > */}
-      {/* //! this need to be changed to responsive heights */}
-      {/* <View style={{ height: 300, backgroundColor: COLORS.primary }} />
-      <View style={{ height: 800, backgroundColor: COLORS.white }} /> */}
-      {/* </View>
-      </View> */}
+        >
+          {/* //! this need to be changed to responsive heights */}
+          <View style={{ height: 220, backgroundColor: COLORS.primary }} />
+          <View style={{ flex: 1 }}>
+            <View
+              style={{
+                height: 1000,
+                backgroundColor: "#f8f8ff", //originall COLORS.white
+                paddingHorizontal: SIZES.base * 2,
+              }}
+            >
+              <Text
+                style={{
+                  fontSize: 22,
+                  fontWeight: "bold",
+                  marginTop: 22,
+                }}
+              >
+                Rows
+              </Text>
+              {/* Row Filter */}
+              <RowsFilter />
+              <Text
+                style={{
+                  fontSize: 22,
+                  fontWeight: "bold",
+                  marginTop: 22,
+                }}
+              >
+                Plots
+              </Text>
+              <PlotCard />
+            </View>
+          </View>
+        </View>
+      </View>
     </SafeAreaView>
   );
 };

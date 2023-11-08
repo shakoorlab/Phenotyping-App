@@ -1,8 +1,8 @@
 import { View, Text, Image, TextInput } from "react-native";
 
-import { COLORS, FONTS, SIZES, assets } from "../constants";
+import { COLORS, FONTS, SIZES, assets } from "../../constants";
 
-const HomeHeader = ({ onSearch }) => {
+const HomeHeader = () => {
   return (
     <View
       style={{
@@ -62,7 +62,7 @@ const HomeHeader = ({ onSearch }) => {
             marginTop: SIZES.base / 2,
           }}
         >
-          Please select a location
+          Row and plot selection
         </Text>
       </View>
 
@@ -84,9 +84,8 @@ const HomeHeader = ({ onSearch }) => {
             style={{ width: 20, height: 20, marginRight: SIZES.base }}
           />
           <TextInput
-            placeholder="Search locations"
+            placeholder="Type your row followed by a plot number"
             style={{ flex: 1 }}
-            onChangeText={onSearch}
           />
         </View>
       </View>

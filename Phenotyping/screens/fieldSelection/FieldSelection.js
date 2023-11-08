@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { View, FlatList, SafeAreaView } from "react-native";
-import { Card, HomeHeader, FocusedStatusBar } from "../../components";
+import { Card, FocusedStatusBar } from "../../components";
 import { COLORS, NFTData } from "../../constants";
 import { StatusBar } from "expo-status-bar";
+import HomeHeader from "../../components/Headers/HomeHeader";
 
 const FieldSelectionScreen = () => {
   //
