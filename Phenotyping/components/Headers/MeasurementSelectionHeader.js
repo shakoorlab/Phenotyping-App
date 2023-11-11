@@ -1,8 +1,10 @@
 import { View, Text, Image, TextInput } from "react-native";
-
 import { COLORS, FONTS, SIZES, assets } from "../../constants";
+import { CircleButton } from "../../components";
+import { useNavigation } from "@react-navigation/native";
 
-const QuestionsHeader = () => {
+const MeasurementSelectionHeader = () => {
+  const navigation = useNavigation();
   return (
     <View
       style={{
@@ -17,11 +19,18 @@ const QuestionsHeader = () => {
           alignItems: "center",
         }}
       >
+        {/* //! why does this work?-------- */}
         <Image
-          source={assets.logo} //logo on top right of screen
+          // source={assets.storm} //logo on top right of screen
           resizeMode="contain"
           style={{ width: 90, height: 25 }}
         />
+        <CircleButton
+          imgURL={assets.left}
+          handlePress={() => navigation.goBack()}
+          style={{ width: 90, height: 25 }}
+        />
+        {/* //! why does this work?^^--------- */}
 
         <View style={{ width: 45, height: 45 }}>
           <Image
@@ -62,7 +71,7 @@ const QuestionsHeader = () => {
             marginTop: SIZES.base / 2,
           }}
         >
-          Please select a location
+          Season Measurement Type
         </Text>
       </View>
 
@@ -84,9 +93,8 @@ const QuestionsHeader = () => {
             style={{ width: 20, height: 20, marginRight: SIZES.base }}
           />
           <TextInput
-            placeholder="Search locations"
+            placeholder="Search for a specific measurement"
             style={{ flex: 1 }}
-            onChangeText={onSearch}
           />
         </View>
       </View>
@@ -94,4 +102,4 @@ const QuestionsHeader = () => {
   );
 };
 
-export default QuestionsHeader;
+export default MeasurementSelectionHeader;

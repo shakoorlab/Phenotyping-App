@@ -7,23 +7,23 @@ import {
   TouchableOpacity,
 } from "react-native";
 import React from "react";
-import { COLORS, plotList } from "../constants";
+import { COLORS, measurementsList } from "../constants";
 import { useNavigation } from "@react-navigation/native";
 
-const PlotCard = () => {
+const MeasurementCard = () => {
   const navigation = useNavigation();
 
   return (
     <View>
       <FlatList
-        data={plotList}
-        numColumns={4}
+        data={measurementsList}
+        numColumns={2}
         columnWrapperStyle={{
           justifyContent: "space-between",
         }}
         showsVerticalScrollIndicator={false}
         renderItem={({ item }) => (
-          <TouchableOpacity onPress={() => navigation.push("QuestionsScreen")}>
+          <TouchableOpacity onPress={() => navigation.push("PlotRowSelection")}>
             <View
               style={{
                 backgroundColor: COLORS.light,
@@ -34,7 +34,7 @@ const PlotCard = () => {
                 borderRadius: 16,
                 marginVertical: 16,
                 alignItems: "center",
-                paddingHorizontal: 8,
+                paddingHorizontal: 78,
                 paddingVertical: 26,
               }}
             >
@@ -51,6 +51,6 @@ const PlotCard = () => {
   );
 };
 
-export default PlotCard;
+export default MeasurementCard;
 
 const styles = StyleSheet.create({});

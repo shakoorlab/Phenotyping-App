@@ -190,7 +190,7 @@ export default function Datasheet() {
 const styles = StyleSheet.create({
   container: {
     padding: 20,
-    marginTop: 20,
+    marginTop: 5,
   },
   header: {
     fontSize: 16,

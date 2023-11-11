@@ -3,7 +3,7 @@ import { COLORS, FONTS, SIZES, assets } from "../../constants";
 import { CircleButton } from "../../components";
 import { useNavigation } from "@react-navigation/native";
 
-const FieldRowHeader = () => {
+const DatasheetHeader = () => {
   const navigation = useNavigation();
   return (
     <View
@@ -71,7 +71,7 @@ const FieldRowHeader = () => {
             marginTop: SIZES.base / 2,
           }}
         >
-          Row and plot selection
+          Phenotyping Measurements
         </Text>
       </View>
 
@@ -93,7 +93,7 @@ const FieldRowHeader = () => {
             style={{ width: 20, height: 20, marginRight: SIZES.base }}
           />
           <TextInput
-            placeholder="Type your row followed by a plot number"
+            placeholder="Search for a specific measurement"
             style={{ flex: 1 }}
           />
         </View>
@@ -102,4 +102,4 @@ const FieldRowHeader = () => {
   );
 };
 
-export default FieldRowHeader;
+export default DatasheetHeader;

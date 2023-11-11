@@ -66,7 +66,28 @@ export const rows = [
     row: "Row 10",
   },
 ];
-
+export const measurementsList = [
+  {
+    id: "1",
+    name: "Pre Season",
+    image: require("../assets/images/pre.png"),
+  },
+  {
+    id: "2",
+    name: "Mid Season",
+    image: require("../assets/images/sorghum.png"),
+  },
+  {
+    id: "3",
+    name: "End of Season",
+    image: require("../assets/images/sorghum.png"),
+  },
+  {
+    id: "4",
+    name: "Biomass",
+    image: require("../assets/images/sorghum.png"),
+  },
+];
 export const plotList = [
   {
     id: "1",

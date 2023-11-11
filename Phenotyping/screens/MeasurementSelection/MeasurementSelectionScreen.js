@@ -2,9 +2,8 @@ import { View, FlatList, SafeAreaView, Text } from "react-native";
 import { FocusedStatusBar } from "../../components";
 import { COLORS, SIZES } from "../../constants";
 import { StatusBar } from "expo-status-bar";
-import FieldRowHeader from "../../components/Headers/FieldRowHeader";
-import RowsFilter from "../../components/RowsFilter";
-import PlotCard from "../../components/PlotCard";
+import MeasurementSelectionHeader from "../../components/Headers/MeasurementSelectionHeader";
+import MeasurementCard from "../../components/MeasurementCard";
 
 const FieldSelectionScreen = () => {
   return (
@@ -15,7 +14,7 @@ const FieldSelectionScreen = () => {
         <View style={{ zIndex: 0 }}>
           <FlatList
             showsVerticalScrollIndicator={false}
-            ListHeaderComponent={<FieldRowHeader />}
+            ListHeaderComponent={<MeasurementSelectionHeader />}
           />
         </View>
 
@@ -44,22 +43,13 @@ const FieldSelectionScreen = () => {
                   fontSize: 22,
                   fontWeight: "bold",
                   marginTop: 22,
+                  marginBottom: 22,
+                  textAlign: "center",
                 }}
               >
-                Rows
+                Season Measurements
               </Text>
-              {/* Row Filter */}
-              <RowsFilter />
-              <Text
-                style={{
-                  fontSize: 22,
-                  fontWeight: "bold",
-                  marginTop: 22,
-                }}
-              >
-                Plots
-              </Text>
-              <PlotCard />
+              <MeasurementCard />
             </View>
           </View>
         </View>

@@ -8,15 +8,17 @@ import {
   FlatList,
 } from "react-native";
 
-import { COLORS, SIZES, assets, SHADOWS, FONTS } from "../../constants";
+import { COLORS, SIZES, SHADOWS, FONTS } from "../../constants";
+import assets from "../../constants/assets";
 import {
   CircleButton,
   RectButton,
-  SubInfo,
   DetailsDesc,
   DetailsBid,
   FocusedStatusBar,
 } from "../../components";
+
+import { SubInfo } from "../../constants";
 
 const DetailsHeader = ({ data, navigation }) => (
   <View style={{ width: "100%", height: 373 }}>
@@ -27,14 +29,14 @@ const DetailsHeader = ({ data, navigation }) => (
     />
 
     <CircleButton
-      imgUrl={assets.left}
+      imgURL={assets.left}
       handlePress={() => navigation.goBack()}
       left={15}
       top={StatusBar.currentHeight + 10}
     />
 
     <CircleButton
-      imgUrl={assets.storm} //originally was assets.heart
+      imgURL={assets.storm} //originally was assets.heart
       right={15}
       top={StatusBar.currentHeight + 10}
       handlePress={() => navigation.navigate("Weather")}
@@ -68,7 +70,7 @@ const Details = ({ route, navigation }) => {
           minWidth={170}
           fontSize={SIZES.large}
           {...SHADOWS.dark}
-          handlePress={() => navigation.navigate("PlotRowSelection")}
+          handlePress={() => navigation.navigate("MeasurementSelectionScreen")}
         />
       </View>
 
@@ -83,7 +85,7 @@ const Details = ({ route, navigation }) => {
         ListHeaderComponent={() => (
           <React.Fragment>
             <DetailsHeader data={data} navigation={navigation} />
-            {/* <SubInfo /> */}
+            <SubInfo />
             <View style={{ padding: SIZES.font }}>
               <DetailsDesc data={data} />
 

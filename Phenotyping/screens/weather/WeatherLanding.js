@@ -14,6 +14,7 @@ import {
   MagnifyingGlassIcon,
   CalendarDaysIcon,
   XMarkIcon,
+  ChevronLeftIcon,
 } from "react-native-heroicons/outline";
 import { MapPinIcon } from "react-native-heroicons/solid";
 import { debounce } from "lodash";
@@ -22,6 +23,7 @@ import { fetchWeatherForecast } from "../../api/weather";
 import { weatherImages } from "../../constants";
 import * as Progress from "react-native-progress";
 import { getData, storeData } from "../../utils/asyncStorage";
+import { useNavigation } from "@react-navigation/native";
 
 const WeatherLanding = () => {
   const [loading, setLoading] = useState(true);
@@ -78,10 +80,11 @@ const WeatherLanding = () => {
       setWeather(data);
       setLoading(false);
     });
-    // --------------------------------------------------end of async code
+    // --------------------------------------------------end of async code-------------------------
   };
   const handleTextDebounce = useCallback(debounce(handleSearch, 1200), []); //the debounce is used so that the console does not return every character typed into the search bar, only what is typed in after 1.2 seconds
   const { current, location } = weather;
+  const navigation = useNavigation();
 
   return (
     <View className="flex-1 relative">
@@ -97,16 +100,29 @@ const WeatherLanding = () => {
         </View>
       ) : (
         <SafeAreaView className="flex flex-1">
-          {/* search section */}
-          <View style={{ height: "7%" }} className="mx-4 relative z-50">
+          {/* ------------------------------------search section---------------------------- */}
+          <View style={{ height: "7%" }} className="mx-4 z-50">
+            {/* ml-20 mr-4 relative z-5 */}
             <View
-              className="flex-row justify-end items-center rounded-full"
+              className="flex-row justify-between items-center rounded-full"
               style={{
                 backgroundColor: showSearch
                   ? theme.bgWhite(0.2)
                   : "transparent",
               }}
             >
+              {!showSearch && (
+                // Left return navigation Icon
+                <TouchableOpacity
+                  onPress={() => navigation.goBack()}
+                  className="rounded-full p-3 m-1"
+                  style={{ backgroundColor: theme.bgWhite(0.3) }}
+                >
+                  <ChevronLeftIcon size="25" color="white" />
+                </TouchableOpacity>
+              )}
+
+              {/* Existing Search Bar and magnifyglass on right side of screen Icon */}
               {showSearch ? (
                 <TextInput
                   onChangeText={handleTextDebounce}

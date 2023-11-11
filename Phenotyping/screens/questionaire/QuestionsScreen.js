@@ -1,12 +1,12 @@
+import React, { useState } from "react";
 import { View, FlatList, SafeAreaView, Text } from "react-native";
 import { FocusedStatusBar } from "../../components";
 import { COLORS, SIZES } from "../../constants";
 import { StatusBar } from "expo-status-bar";
-import FieldRowHeader from "../../components/Headers/FieldRowHeader";
-import RowsFilter from "../../components/RowsFilter";
-import PlotCard from "../../components/PlotCard";
+import DatasheetHeader from "../../components/Headers/DatasheetHeader";
+import EOSDatasheet from "../../components/Datasheet/EOSDatasheet";
 
-const FieldSelectionScreen = () => {
+const QuestionsScreen = () => {
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <FocusedStatusBar background={COLORS.primary} />
@@ -15,7 +15,7 @@ const FieldSelectionScreen = () => {
         <View style={{ zIndex: 0 }}>
           <FlatList
             showsVerticalScrollIndicator={false}
-            ListHeaderComponent={<FieldRowHeader />}
+            ListHeaderComponent={<DatasheetHeader />}
           />
         </View>
 
@@ -34,7 +34,6 @@ const FieldSelectionScreen = () => {
           <View style={{ flex: 1 }}>
             <View
               style={{
-                height: 1000,
                 backgroundColor: "#f8f8ff", //originall COLORS.white
                 paddingHorizontal: SIZES.base * 2,
               }}
@@ -44,22 +43,18 @@ const FieldSelectionScreen = () => {
                   fontSize: 22,
                   fontWeight: "bold",
                   marginTop: 22,
+                  textAlign: "center",
                 }}
               >
-                Rows
+                Measurements
               </Text>
-              {/* Row Filter */}
-              <RowsFilter />
-              <Text
-                style={{
-                  fontSize: 22,
-                  fontWeight: "bold",
-                  marginTop: 22,
-                }}
-              >
-                Plots
-              </Text>
-              <PlotCard />
+            </View>
+            <View
+              style={{
+                backgroundColor: "#f8f8ff",
+              }}
+            >
+              <EOSDatasheet />
             </View>
           </View>
         </View>
@@ -67,4 +62,4 @@ const FieldSelectionScreen = () => {
     </SafeAreaView>
   );
 };
-export default FieldSelectionScreen;
+export default QuestionsScreen;
