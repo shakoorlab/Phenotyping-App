@@ -75,12 +75,12 @@ export const measurementsList = [
   {
     id: "2",
     name: "Mid Season",
-    image: require("../assets/images/sorghum.png"),
+    image: require("../assets/images/sun.png"),
   },
   {
     id: "3",
     name: "End of Season",
-    image: require("../assets/images/sorghum.png"),
+    image: require("../assets/images/sorghum1.png"),
   },
   {
     id: "4",
