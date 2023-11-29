@@ -35,7 +35,6 @@ const FieldSelectionScreen = () => {
           <View style={{ flex: 1 }}>
             <View
               style={{
-                height: 1000,
                 backgroundColor: "#f8f8ff", //originall COLORS.white
                 paddingHorizontal: SIZES.base * 2,
               }}
