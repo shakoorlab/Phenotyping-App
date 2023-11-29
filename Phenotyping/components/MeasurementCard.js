@@ -26,15 +26,15 @@ const MeasurementCard = () => {
           <TouchableOpacity onPress={() => navigation.push("PlotRowSelection")}>
             <View
               style={{
-                backgroundColor: COLORS.light,
+                backgroundColor: item.backgroundColor,
                 shadowColor: "#000",
                 shadowOffset: { width: 0, height: 4 },
-                shadowOpacity: 0.1,
+                shadowOpacity: 0.2,
                 shadowRadius: 7,
                 borderRadius: 16,
                 marginVertical: 16,
                 alignItems: "center",
-                paddingHorizontal: 78,
+                paddingHorizontal: 98,
                 paddingVertical: 26,
               }}
             >
@@ -42,7 +42,9 @@ const MeasurementCard = () => {
                 source={item.image}
                 style={{ width: 150, height: 150, resizeMode: "center" }}
               />
-              <Text style={{ marginTop: 8 }}>{item.name}</Text>
+              <Text style={{ marginTop: 8, fontWeight: "bold" }}>
+                {item.name}
+              </Text>
             </View>
           </TouchableOpacity>
         )}

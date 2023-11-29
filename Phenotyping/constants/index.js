@@ -24,6 +24,24 @@ export const weatherImages = {
   other: require("../assets/images/weather/moderaterain.png"),
 };
 
+export const fields = [
+  {
+    id: "1",
+    field: "Field 1",
+  },
+  {
+    id: "2",
+    field: "Field 2",
+  },
+  {
+    id: "3",
+    field: "Field 3",
+  },
+  {
+    id: "4",
+    field: "Field 4",
+  },
+];
 export const rows = [
   {
     id: "1",
@@ -71,21 +89,25 @@ export const measurementsList = [
     id: "1",
     name: "Pre Season",
     image: require("../assets/images/pre.png"),
+    backgroundColor: "rgba(135,206,235,0.8)",
   },
   {
     id: "2",
     name: "Mid Season",
     image: require("../assets/images/sun.png"),
+    backgroundColor: "rgba(255,0,0,0.38)",
   },
   {
     id: "3",
     name: "End of Season",
     image: require("../assets/images/sorghum1.png"),
+    backgroundColor: "rgba(255,165,0,0.48)",
   },
   {
     id: "4",
     name: "Biomass",
     image: require("../assets/images/sorghum.png"),
+    backgroundColor: "rgba(255,210,0,0.38)",
   },
 ];
 export const plotList = [

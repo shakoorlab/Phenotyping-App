@@ -4,6 +4,7 @@ import { COLORS, SIZES } from "../../constants";
 import { StatusBar } from "expo-status-bar";
 import FieldRowHeader from "../../components/Headers/FieldRowHeader";
 import RowsFilter from "../../components/RowsFilter";
+import FieldsFilter from "../../components/FieldsFilter";
 import PlotCard from "../../components/PlotCard";
 
 const FieldSelectionScreen = () => {
@@ -46,9 +47,18 @@ const FieldSelectionScreen = () => {
                   marginTop: 22,
                 }}
               >
+                Fields
+              </Text>
+              <FieldsFilter />
+              <Text
+                style={{
+                  fontSize: 22,
+                  fontWeight: "bold",
+                  marginTop: 22,
+                }}
+              >
                 Rows
               </Text>
-              {/* Row Filter */}
               <RowsFilter />
               <Text
                 style={{

@@ -30,7 +30,7 @@ export const EthPrice = ({ price }) => {
   return (
     <View style={{ flexDirection: "row", alignItems: "center" }}>
       <Image
-        source={assets.eth}
+        source={assets.clock}
         resizeMode="contain"
         style={{ width: 20, height: 20, marginRight: 2 }}
       />

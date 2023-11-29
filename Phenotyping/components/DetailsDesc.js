@@ -31,7 +31,7 @@ const DetailsDesc = ({ data }) => {
       <View style={{ marginVertical: SIZES.extraLarge * 1.5 }}>
         <Text
           style={{
-            fontSize: SIZES.font, //was originally SIZES.font
+            fontSize: SIZES.medium, //was originally SIZES.font
             fontFamily: FONTS.semiBold,
             color: COLORS.primary,
           }}

@@ -1,6 +1,7 @@
 import badge from "../assets/icons/badge.png";
-import eth from "../assets/icons/eth.png";
+import clock from "../assets/icons/clock.png";
 import heart from "../assets/icons/heart.png";
+import unchecked_heart from "../assets/icons/unchecked_heart.png";
 import left from "../assets/icons/left.png";
 import search from "../assets/icons/search.png";
 import storm from "../assets/icons/storm.png";
@@ -21,8 +22,9 @@ import person04 from "../assets/images1/person04.png";
 
 export default {
   badge,
-  eth,
+  clock,
   heart,
+  unchecked_heart,
   left,
   search,
   storm,
