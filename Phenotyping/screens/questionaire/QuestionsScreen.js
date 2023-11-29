@@ -52,6 +52,7 @@ const QuestionsScreen = () => {
             <View
               style={{
                 backgroundColor: "#f8f8ff",
+                flex: 1,
               }}
             >
               <EOSDatasheet />
