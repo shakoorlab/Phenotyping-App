@@ -4,10 +4,11 @@ import {
   ScrollView,
   Text,
   TextInput,
-  Button,
+  TouchableOpacity,
   Switch,
   StyleSheet,
 } from "react-native";
+import { COLORS, SIZES, FONTS, SHADOWS } from "../../constants";
 
 export default function Datasheet() {
   const [firstName, setFirstName] = useState("");
@@ -177,20 +178,45 @@ export default function Datasheet() {
         />
       </View>
 
-      <Button
-        title="Save"
-        onPress={() => {
-          /* Handle the save logic here */
+      <View
+        style={{
+          flexDirection: "row",
+          justifyContent: "center",
+          paddingVertical: 10,
         }}
-      />
+      >
+        <TouchableOpacity
+          style={{
+            backgroundColor: COLORS.primary,
+            padding: SIZES.large,
+            borderRadius: SIZES.extraLarge,
+            ...SHADOWS.light,
+            width: 150,
+            // Add any additional styles you may need
+          }}
+          // onPress={handlePress}
+        >
+          <Text
+            style={{
+              fontFamily: FONTS.semiBold,
+              fontSize: SIZES.medium,
+              color: COLORS.white,
+              textAlign: "center",
+            }}
+          >
+            Submit
+          </Text>
+        </TouchableOpacity>
+      </View>
     </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    padding: 20,
     marginTop: 5,
+    paddingHorizontal: 10,
+    paddingBottom: 34,
   },
   header: {
     fontSize: 16,
