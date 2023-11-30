@@ -18,7 +18,7 @@ const HomeHeader = ({ onSearch }) => {
         }}
       >
         <Image
-          source={assets.logo} //logo on top right of screen
+          source={assets.logo} //logo on top left of screen
           resizeMode="contain"
           style={{ width: 90, height: 25 }}
         />
