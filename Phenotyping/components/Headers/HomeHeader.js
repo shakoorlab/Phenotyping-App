@@ -1,8 +1,10 @@
 import { View, Text, Image, TextInput } from "react-native";
-
 import { COLORS, FONTS, SIZES, assets } from "../../constants";
+import { useNavigation } from "@react-navigation/native";
+import { TouchableOpacity } from "react-native-gesture-handler";
 
 const HomeHeader = ({ onSearch }) => {
+  const navigation = useNavigation(); //for custom drawer
   return (
     <View
       style={{
@@ -24,11 +26,13 @@ const HomeHeader = ({ onSearch }) => {
         />
 
         <View style={{ width: 45, height: 45 }}>
-          <Image
-            source={assets.person01}
-            resizeMode="contain"
-            style={{ width: "100%", height: "100%" }}
-          />
+          <TouchableOpacity onPress={() => navigation.toggleDrawer()}>
+            <Image
+              source={assets.person01}
+              resizeMode="contain"
+              style={{ width: "100%", height: "100%" }}
+            />
+          </TouchableOpacity>
           <Image
             source={assets.badge}
             resizeMode="contain"

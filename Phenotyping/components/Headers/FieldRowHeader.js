@@ -33,11 +33,13 @@ const FieldRowHeader = () => {
         {/* //! why does this work?^^--------- */}
 
         <View style={{ width: 45, height: 45 }}>
-          <Image
-            source={assets.person01}
-            resizeMode="contain"
-            style={{ width: "100%", height: "100%" }}
-          />
+          <TouchableOpacity onPress={() => navigation.toggleDrawer()}>
+            <Image
+              source={assets.person01}
+              resizeMode="contain"
+              style={{ width: "100%", height: "100%" }}
+            />
+          </TouchableOpacity>
           <Image
             source={assets.badge}
             resizeMode="contain"
