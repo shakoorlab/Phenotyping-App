@@ -19,7 +19,7 @@
     "@types/react": "~18.2.14",
     "axios": "^1.6.0",
     "expo": "~49.0.13",
-    "expo-blur": "^12.6.0",
+    "expo-blur": "~12.4.1",
     "expo-status-bar": "~1.6.0",
     "lottie-react-native": "5.1.6",
     "nativewind": "^2.0.11",
