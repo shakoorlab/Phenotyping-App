@@ -1,7 +1,7 @@
 import * as React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { createDrawerNavigator, DrawerItem } from "@react-navigation/drawer";
+import { createDrawerNavigator } from "@react-navigation/drawer";
 import { useFonts } from "expo-font";
 import LoginScreen from "./screens/login/LoginScreen";
 import SignupScreen from "./screens/signup/SignupScreen";
@@ -12,31 +12,10 @@ import WeatherLanding from "./screens/weather/WeatherLanding";
 import PlotRowSelection from "./screens/plotRow/PlotRowSelection";
 import QuestionsScreen from "./screens/questionaire/QuestionsScreen";
 import MeasurementSelectionScreen from "./screens/MeasurementSelection/MeasurementSelectionScreen";
-import { BlurView } from "expo-blur"; // Changed from @react-native-community/blur
-import { View, Text } from "react-native";
+import CustomDrawerContent from "./components/Tools/CustomDrawerContent";
 
 const Stack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
-
-const CustomDrawerContent = (props) => {
-  return (
-    <BlurView intensity={50} style={{ flex: 1 }}>
-      <View style={{ flex: 1, padding: 20 }}>
-        <Text>User 1</Text>
-        <DrawerItem
-          label="Home"
-          onPress={() => props.navigation.navigate("Home")}
-        />
-        <DrawerItem
-          label="Field Selection"
-          onPress={() => props.navigation.navigate("FieldSelection")}
-        />
-
-        <DrawerItem label="Sign Out" />
-      </View>
-    </BlurView>
-  );
-};
 
 function MainStackNavigator() {
   return (
