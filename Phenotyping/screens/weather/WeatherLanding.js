@@ -1,3 +1,4 @@
+import React, { useState, useCallback, useEffect } from "react";
 import {
   View,
   Text,
@@ -6,272 +7,363 @@ import {
   SafeAreaView,
   TouchableOpacity,
   ScrollView,
+  StyleSheet,
+  StatusBar,
 } from "react-native";
-import { StatusBar } from "expo-status-bar";
-import React, { useState, useCallback, useEffect } from "react";
-import { theme } from "./theme";
 import {
   MagnifyingGlassIcon,
   CalendarDaysIcon,
   XMarkIcon,
   ChevronLeftIcon,
+  MapPinIcon,
 } from "react-native-heroicons/outline";
-import { MapPinIcon } from "react-native-heroicons/solid";
 import { debounce } from "lodash";
-import { fetchLocations } from "../../api/weather";
-import { fetchWeatherForecast } from "../../api/weather";
-import { weatherImages } from "../../constants";
-import * as Progress from "react-native-progress";
+import { fetchLocations, fetchWeatherForecast } from "../../api/weather";
 import { getData, storeData } from "../../utils/asyncStorage";
 import { useNavigation } from "@react-navigation/native";
+import * as Progress from "react-native-progress";
+import { theme } from "./theme"; // Assuming theme provides certain colors and styles
+import { weatherImages } from "../../constants";
 
 const WeatherLanding = () => {
   const [loading, setLoading] = useState(true);
   const [weather, setWeather] = useState({});
-
-  //--------------------- logic for search bar --------------------------
   const [showSearch, toggleSearch] = useState(false);
-  //
-  //
-  //--------------------- logic for search bar 'searching'  --------------------------
   const [locations, setLocations] = useState([]);
-  const handleLocation = (loc) => {
-    // console.log("location: ", loc);
-    setLocations([]);
-    toggleSearch(false);
-    setLoading(true); //will show loading bar until app receives data
-    fetchWeatherForecast({
-      cityName: loc.name,
-      days: "7",
-    }).then((data) => {
-      setWeather(data); //this makes it so that when you click a location in the search bar, it saves it in state
-      setLoading(false); // will not show loading bar because you have the data
-      storeData("city", loc.name);
-      // console.log("got forecast: ", data);
-    });
-  };
-  //
-  //
+  const navigation = useNavigation();
 
-  const handleSearch = (value) => {
-    // fetch locations
-    if (value.length > 2) {
-      fetchLocations({ cityName: value }).then((data) => {
-        setLocations(data);
-      });
-    }
-  };
-  // -----------async so that when you open this page, it has a preloaded values
   useEffect(() => {
     fetchMyWeatherData();
   }, []);
 
-  const fetchMyWeatherData = async () => {
-    let myCity = await getData("city");
-    let cityName = "Islamabad";
-    if (myCity) {
-      cityName = myCity;
-    }
-    fetchWeatherForecast({
-      cityName,
-      days: "7",
-    }).then((data) => {
-      // console.log('got data: ',data.forecast.forecastday);
-      setWeather(data);
-      setLoading(false);
-    });
-    // --------------------------------------------------end of async code-------------------------
+  const handleLocation = async (loc) => {
+    setLocations([]);
+    toggleSearch(false);
+    setLoading(true);
+    const data = await fetchWeatherForecast({ cityName: loc.name, days: "7" });
+    setWeather(data);
+    setLoading(false);
+    await storeData("city", loc.name);
   };
-  const handleTextDebounce = useCallback(debounce(handleSearch, 1200), []); //the debounce is used so that the console does not return every character typed into the search bar, only what is typed in after 1.2 seconds
-  const { current, location } = weather;
-  const navigation = useNavigation();
+
+  const handleSearch = async (value) => {
+    if (value.length > 2) {
+      const data = await fetchLocations({ cityName: value });
+      setLocations(data);
+    }
+  };
+
+  const handleTextDebounce = useCallback(debounce(handleSearch, 1200), []);
+
+  const fetchMyWeatherData = async () => {
+    const myCity = await getData("city");
+    const cityName = myCity || "Islamabad";
+    const data = await fetchWeatherForecast({ cityName, days: "7" });
+    setWeather(data);
+    setLoading(false);
+  };
 
   return (
-    <View className="flex-1 relative">
+    <View style={styles.container}>
       <StatusBar style="light" />
       <Image
         blurRadius={70}
         source={require("../../assets/images/weather/bg.png")}
-        className="absolute w-full h-full"
+        style={styles.fullSize}
       />
       {loading ? (
-        <View className="flex-1 flex-row justify-center items-center">
-          <Progress.CircleSnail thickness={10} size={140} color="#0bb3b2" />
+        <View style={styles.loadingContainer}>
+          <Progress.CircleSnail color="#0bb3b2" thickness={10} size={140} />
         </View>
       ) : (
-        <SafeAreaView className="flex flex-1">
-          {/* ------------------------------------search section---------------------------- */}
-          <View style={{ height: "7%" }} className="mx-4 z-50">
-            {/* ml-20 mr-4 relative z-5 */}
+        <SafeAreaView style={styles.flex}>
+          <View style={styles.searchSection}>
             <View
-              className="flex-row justify-between items-center rounded-full"
-              style={{
-                backgroundColor: showSearch
-                  ? theme.bgWhite(0.2)
-                  : "transparent",
-              }}
+              style={showSearch ? styles.searchBarActive : styles.searchBar}
             >
               {!showSearch && (
-                // Left return navigation Icon
                 <TouchableOpacity
+                  style={styles.iconButton}
                   onPress={() => navigation.goBack()}
-                  className="rounded-full p-3 m-1"
-                  style={{ backgroundColor: theme.bgWhite(0.3) }}
                 >
-                  <ChevronLeftIcon size="25" color="white" />
+                  <ChevronLeftIcon size={25} color="white" />
                 </TouchableOpacity>
               )}
-
-              {/* Existing Search Bar and magnifyglass on right side of screen Icon */}
-              {showSearch ? (
+              {showSearch && (
                 <TextInput
                   onChangeText={handleTextDebounce}
                   placeholder="Search city"
-                  placeholderTextColor={"lightgray"}
-                  className="pl-6 h-10 pb-1 flex-1 text-base text-white"
+                  placeholderTextColor="lightgray"
+                  style={styles.searchInput}
                 />
-              ) : null}
+              )}
               <TouchableOpacity
+                style={styles.iconButton}
                 onPress={() => toggleSearch(!showSearch)}
-                className="rounded-full p-3 m-1"
-                style={{ backgroundColor: theme.bgWhite(0.3) }}
               >
                 {showSearch ? (
-                  <XMarkIcon size="25" color="white" />
+                  <XMarkIcon size={25} color="white" />
                 ) : (
-                  <MagnifyingGlassIcon size="25" color="white" />
+                  <MagnifyingGlassIcon size={25} color="white" />
                 )}
               </TouchableOpacity>
             </View>
-            {locations.length > 0 && showSearch ? (
-              <View className="absolute w-full bg-gray-300 top-16 rounded-3xl ">
-                {locations.map((loc, index) => {
-                  let showBorder = index + 1 != locations.length;
-                  let borderClass = showBorder
-                    ? " border-b-2 border-b-gray-400"
-                    : "";
-                  return (
-                    <TouchableOpacity
-                      key={index}
-                      onPress={() => handleLocation(loc)}
-                      className={
-                        "flex-row items-center border-0 p-3 px-4 mb-1 " +
-                        borderClass
-                      }
-                    >
-                      <MapPinIcon size="20" color="gray" />
-                      <Text className="text-black text-lg ml-2">
-                        {loc?.name}, {loc?.country}
-                      </Text>
-                    </TouchableOpacity>
-                  );
-                })}
+            {locations.length > 0 && showSearch && (
+              <View style={styles.locationsContainer}>
+                {locations.map((loc, index) => (
+                  <TouchableOpacity
+                    key={index}
+                    style={styles.locationItem(index === locations.length - 1)}
+                    onPress={() => handleLocation(loc)}
+                  >
+                    <MapPinIcon size={20} color="gray" />
+                    <Text style={styles.locationText}>
+                      {loc?.name}, {loc?.country}
+                    </Text>
+                  </TouchableOpacity>
+                ))}
               </View>
-            ) : null}
+            )}
           </View>
-
-          {/* forecast section */}
-          <View className="mx-4 flex justify-around flex-1 mb-2">
-            {/* location */}
-            <Text className="text-white text-center text-2xl font-bold">
-              {location?.name},
-              <Text className="text-lg font-semibold text-gray-300">
-                {location?.country}
+          <View style={styles.forecastContainer}>
+            <Text style={styles.locationName}>
+              {weather.location?.name},
+              <Text style={styles.countryName}>
+                {weather.location?.country}
               </Text>
             </Text>
-            {/* weather icon */}
-            <View className="flex-row justify-center">
+            <View style={styles.centeredRow}>
               <Image
-                // source={{uri: 'https:'+current?.condition?.icon}}
-                source={weatherImages[current?.condition?.text || "other"]}
-                className="w-52 h-52"
+                source={
+                  weatherImages[weather.current?.condition?.text || "other"]
+                }
+                style={styles.weatherIcon}
               />
             </View>
-            {/* degree celcius */}
-            <View className="space-y-2">
-              <Text className="text-center font-bold text-white text-6xl ml-5">
-                {current?.temp_c}&#176;
-              </Text>
-              <Text className="text-center text-white text-xl tracking-widest">
-                {current?.condition?.text}
+            <View style={styles.temperatureContainer}>
+              <Text style={styles.temperature}>{weather.current?.temp_c}°</Text>
+              <Text style={styles.weatherCondition}>
+                {weather.current?.condition?.text}
               </Text>
             </View>
-
-            {/* other stats */}
-            <View className="flex-row justify-between mx-4">
-              <View className="flex-row space-x-2 items-center">
+            <View style={styles.statsRow}>
+              <View style={styles.statItem}>
                 <Image
                   source={require("../../assets/images/weather/wind.png")}
-                  className="w-6 h-6"
+                  style={styles.smallIcon}
                 />
-                <Text className="text-white font-semibold text-base">
-                  {current?.wind_kph}km
+                <Text style={styles.statText}>
+                  {weather.current?.wind_kph} km
                 </Text>
               </View>
-              <View className="flex-row space-x-2 items-center">
+              <View style={styles.statItem}>
                 <Image
                   source={require("../../assets/images/weather/drop.png")}
-                  className="w-6 h-6"
+                  style={styles.smallIcon}
                 />
-                <Text className="text-white font-semibold text-base">
-                  {current?.humidity}%
+                <Text style={styles.statText}>
+                  {weather.current?.humidity}%
                 </Text>
               </View>
-              <View className="flex-row space-x-2 items-center">
+              <View style={styles.statItem}>
                 <Image
                   source={require("../../assets/images/weather/sun.png")}
-                  className="w-6 h-6"
+                  style={styles.smallIcon}
                 />
-                <Text className="text-white font-semibold text-base">
-                  {weather?.forecast?.forecastday[0]?.astro?.sunrise}
+                <Text style={styles.statText}>
+                  {weather.forecast?.forecastday[0]?.astro?.sunrise}
                 </Text>
               </View>
             </View>
           </View>
-
-          {/* forecast for next days */}
-          <View className="mb-2 space-y-3">
-            <View className="flex-row items-center mx-5 space-x-2">
-              <CalendarDaysIcon size="22" color="white" />
-              <Text className="text-white text-base">Daily forecast</Text>
-            </View>
-            <ScrollView
-              horizontal
-              contentContainerStyle={{ paddingHorizontal: 15 }}
-              showsHorizontalScrollIndicator={false}
-            >
-              {weather?.forecast?.forecastday?.map((item, index) => {
-                const date = new Date(item.date);
-                const options = { weekday: "long" };
-                let dayName = date.toLocaleDateString("en-US", options);
-                dayName = dayName.split(",")[0];
-
-                return (
-                  <View
-                    key={index}
-                    className="flex justify-center items-center w-24 rounded-3xl py-3 space-y-1 mr-4"
-                    style={{ backgroundColor: theme.bgWhite(0.15) }}
-                  >
-                    <Image
-                      // source={{uri: 'https:'+item?.day?.condition?.icon}}
-                      source={
-                        weatherImages[item?.day?.condition?.text || "other"]
-                      }
-                      className="w-11 h-11"
-                    />
-                    <Text className="text-white">{dayName}</Text>
-                    <Text className="text-white text-xl font-semibold">
-                      {item?.day?.avgtemp_c}&#176;
-                    </Text>
-                  </View>
-                );
-              })}
-            </ScrollView>
-          </View>
+          <ScrollView
+            horizontal
+            showsHorizontalScrollIndicator={false}
+            contentContainerStyle={styles.dailyForecast}
+          >
+            {weather.forecast?.forecastday?.map((item, index) => (
+              <View key={index} style={styles.dayForecast}>
+                <Image
+                  source={weatherImages[item.day.condition.text || "other"]}
+                  style={styles.forecastIcon}
+                />
+                <Text style={styles.dayName}>
+                  {
+                    new Date(item.date)
+                      .toLocaleDateString("en-US", { weekday: "long" })
+                      .split(",")[0]
+                  }
+                </Text>
+                <Text style={styles.dayTemp}>{item.day.avgtemp_c}°</Text>
+              </View>
+            ))}
+          </ScrollView>
         </SafeAreaView>
       )}
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    position: "relative",
+  },
+  fullSize: {
+    position: "absolute",
+    width: "100%",
+    height: "100%",
+  },
+  loadingContainer: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  flex: {
+    flex: 1,
+  },
+  searchSection: {
+    height: "7%",
+    marginHorizontal: 16,
+    zIndex: 50,
+  },
+  searchBar: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    borderRadius: 999,
+    backgroundColor: "transparent",
+  },
+  searchBarActive: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    borderRadius: 999,
+    backgroundColor: theme.bgWhite(0.2),
+  },
+  iconButton: {
+    padding: 12,
+    margin: 4,
+    borderRadius: 999,
+    backgroundColor: theme.bgWhite(0.3),
+  },
+  searchInput: {
+    paddingLeft: 24,
+    height: 40,
+    paddingBottom: 4,
+    flex: 1,
+    fontSize: 16,
+    color: "white",
+  },
+  locationsContainer: {
+    position: "absolute",
+    width: "100%",
+    backgroundColor: "#ccc",
+    top: 64,
+    borderRadius: 30,
+  },
+  locationItem: (isLast) => ({
+    flexDirection: "row",
+    alignItems: "center",
+    paddingVertical: 12,
+    paddingHorizontal: 16,
+    marginBottom: 4,
+    borderBottomWidth: isLast ? 0 : 2,
+    borderBottomColor: "#bbb",
+  }),
+  locationText: {
+    color: "black",
+    fontSize: 18,
+    marginLeft: 8,
+  },
+  forecastContainer: {
+    marginHorizontal: 16,
+    justifyContent: "space-around",
+    flex: 1,
+    marginBottom: 8,
+  },
+  locationName: {
+    color: "white",
+    textAlign: "center",
+    fontSize: 24,
+    fontWeight: "bold",
+  },
+  countryName: {
+    fontSize: 18,
+    fontWeight: "600",
+    color: "#ccc",
+  },
+  centeredRow: {
+    flexDirection: "row",
+    justifyContent: "center",
+  },
+  weatherIcon: {
+    width: 208,
+    height: 208,
+  },
+  temperatureContainer: {
+    flexDirection: "column",
+    alignItems: "center",
+  },
+  temperature: {
+    textAlign: "center",
+    fontWeight: "bold",
+    color: "white",
+    fontSize: 48,
+    marginLeft: 20,
+  },
+  weatherCondition: {
+    textAlign: "center",
+    color: "white",
+    fontSize: 20,
+    letterSpacing: 2,
+  },
+  statsRow: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    marginHorizontal: 16,
+  },
+  statItem: {
+    flexDirection: "row",
+    alignItems: "center",
+    marginRight: 8, // Assuming you want space between items in the row
+  },
+
+  statText: {
+    color: "white",
+    fontWeight: "600",
+    fontSize: 16,
+  },
+  smallIcon: {
+    width: 24,
+    height: 24,
+  },
+  dailyForecast: {
+    paddingHorizontal: 15,
+  },
+  dayForecast: {
+    justifyContent: "center",
+    alignItems: "center",
+    width: 146,
+    height: 100,
+    borderRadius: 30,
+    paddingVertical: 12,
+    spaceY: 4,
+    marginRight: 16,
+    backgroundColor: theme.bgWhite(0.15),
+  },
+  forecastIcon: {
+    width: 44,
+    height: 44,
+  },
+  dayName: {
+    color: "white",
+  },
+  dayTemp: {
+    color: "white",
+    fontSize: 24,
+    fontWeight: "600",
+  },
+});
 
 export default WeatherLanding;
