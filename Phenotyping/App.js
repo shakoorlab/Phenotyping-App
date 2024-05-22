@@ -8,11 +8,12 @@ import SignupScreen from "./screens/signup/SignupScreen";
 import OnboardingScreen from "./screens/onboarding/OnboardingScreen";
 import FieldSelectionScreen from "./screens/fieldSelection/FieldSelection";
 import Details from "./screens/FieldDetails/Details";
-import WeatherLanding from "./screens/weather/WeatherLanding";
+// import WeatherLanding from "./screens/weather/WeatherLanding";
 import PlotRowSelection from "./screens/plotRow/PlotRowSelection";
 import QuestionsScreen from "./screens/questionaire/QuestionsScreen";
 import MeasurementSelectionScreen from "./screens/MeasurementSelection/MeasurementSelectionScreen";
 import CustomDrawerContent from "./components/Tools/CustomDrawerContent";
+import MapScreen from "./screens/MapView/MapScreen";
 
 const Stack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -28,12 +29,13 @@ function MainStackNavigator() {
       <Stack.Screen name="SignUp" component={SignupScreen} />
       <Stack.Screen name="FieldSelection" component={FieldSelectionScreen} />
       <Stack.Screen name="Details" component={Details} />
-      <Stack.Screen name="Weather" component={WeatherLanding} />
+      {/* <Stack.Screen name="Weather" component={WeatherLanding} /> */}
       <Stack.Screen
         name="MeasurementSelectionScreen"
         component={MeasurementSelectionScreen}
       />
-      <Stack.Screen name="PlotRowSelection" component={PlotRowSelection} />
+      {/* <Stack.Screen name="PlotRowSelection" component={PlotRowSelection} /> */}
+      <Stack.Screen name="PlotRowSelection" component={MapScreen} />
       <Stack.Screen name="QuestionsScreen" component={QuestionsScreen} />
     </Stack.Navigator>
   );
