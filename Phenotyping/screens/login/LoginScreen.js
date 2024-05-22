@@ -155,5 +155,6 @@ const styles = StyleSheet.create({
   },
   signupText: {
     color: "#00bfff", // Equivalent to Tailwind's sky-600
+    marginLeft: 10,
   },
 });
