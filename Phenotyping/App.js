@@ -6,13 +6,12 @@ import { useFonts } from "expo-font";
 import LoginScreen from "./screens/login/LoginScreen";
 import SignupScreen from "./screens/signup/SignupScreen";
 import OnboardingScreen from "./screens/onboarding/OnboardingScreen";
-import FieldSelectionScreen from "./screens/fieldSelection/FieldSelection";
-import Details from "./screens/FieldDetails/Details";
-import PlotRowSelection from "./screens/plotRow/PlotRowSelection";
+import FieldSelectionScreen from "./screens/field_selection/FieldSelection";
+import Details from "./screens/field_details/Details";
 import QuestionsScreen from "./screens/questionaire/QuestionsScreen";
-import MeasurementSelectionScreen from "./screens/MeasurementSelection/MeasurementSelectionScreen";
+import MeasurementSelectionScreen from "./screens/measurement_selection/MeasurementSelectionScreen";
 import CustomDrawerContent from "./components/Tools/CustomDrawerContent";
-import MapScreen from "./screens/MapView/MapScreen";
+import MapScreen from "./screens/mapview/MapScreen";
 
 const Stack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -32,7 +31,6 @@ function MainStackNavigator() {
         name="MeasurementSelectionScreen"
         component={MeasurementSelectionScreen}
       />
-      {/* <Stack.Screen name="PlotRowSelection" component={PlotRowSelection} /> */}
       <Stack.Screen name="PlotRowSelection" component={MapScreen} />
       <Stack.Screen name="QuestionsScreen" component={QuestionsScreen} />
     </Stack.Navigator>
