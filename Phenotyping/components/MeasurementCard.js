@@ -1,3 +1,4 @@
+import React from "react";
 import {
   FlatList,
   StyleSheet,
@@ -6,8 +7,7 @@ import {
   Image,
   TouchableOpacity,
 } from "react-native";
-import React from "react";
-import { COLORS, measurementsList } from "../constants";
+import { measurementsList } from "../constants";
 import { useNavigation } from "@react-navigation/native";
 
 const MeasurementCard = () => {
@@ -18,33 +18,18 @@ const MeasurementCard = () => {
       <FlatList
         data={measurementsList}
         numColumns={2}
-        columnWrapperStyle={{
-          justifyContent: "space-between",
-        }}
+        columnWrapperStyle={styles.columnWrapper}
         showsVerticalScrollIndicator={false}
         renderItem={({ item }) => (
           <TouchableOpacity onPress={() => navigation.push("PlotRowSelection")}>
             <View
-              style={{
-                backgroundColor: item.backgroundColor,
-                shadowColor: "#000",
-                shadowOffset: { width: 0, height: 4 },
-                shadowOpacity: 0.2,
-                shadowRadius: 7,
-                borderRadius: 16,
-                marginVertical: 16,
-                alignItems: "center",
-                paddingHorizontal: 98,
-                paddingVertical: 26,
-              }}
+              style={[
+                styles.cardContainer,
+                { backgroundColor: item.backgroundColor },
+              ]}
             >
-              <Image
-                source={item.image}
-                style={{ width: 150, height: 150, resizeMode: "center" }}
-              />
-              <Text style={{ marginTop: 8, fontWeight: "bold" }}>
-                {item.name}
-              </Text>
+              <Image source={item.image} style={styles.image} />
+              <Text style={styles.text}>{item.name}</Text>
             </View>
           </TouchableOpacity>
         )}
@@ -53,6 +38,30 @@ const MeasurementCard = () => {
   );
 };
 
-export default MeasurementCard;
+const styles = StyleSheet.create({
+  columnWrapper: {
+    justifyContent: "space-between",
+  },
+  cardContainer: {
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.2,
+    shadowRadius: 7,
+    borderRadius: 16,
+    marginVertical: 16,
+    alignItems: "center",
+    paddingHorizontal: 98,
+    paddingVertical: 26,
+  },
+  image: {
+    width: 150,
+    height: 150,
+    resizeMode: "center",
+  },
+  text: {
+    marginTop: 8,
+    fontWeight: "bold",
+  },
+});
 
-const styles = StyleSheet.create({});
+export default MeasurementCard;
