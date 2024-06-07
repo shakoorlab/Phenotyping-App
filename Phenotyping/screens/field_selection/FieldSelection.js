@@ -4,6 +4,7 @@ import { Card, FocusedStatusBar } from "../../components";
 import { COLORS, NFTData } from "../../constants";
 import { StatusBar } from "expo-status-bar";
 import HomeHeader from "../../components/Headers/HomeHeader";
+import Animated, { FadeInUp } from "react-native-reanimated";
 
 const FieldSelectionScreen = () => {
   //
@@ -36,7 +37,11 @@ const FieldSelectionScreen = () => {
         <View style={{ zIndex: 0 }}>
           <FlatList
             data={nftData}
-            renderItem={({ item }) => <Card data={item} />}
+            renderItem={({ item }) => (
+              <Animated.View entering={FadeInUp.duration(1000).springify()}>
+                <Card data={item} />
+              </Animated.View>
+            )}
             keyExtractor={(item) => item.id}
             showsVerticalScrollIndicator={false}
             ListHeaderComponent={<HomeHeader onSearch={handleSearch} />}
@@ -54,6 +59,7 @@ const FieldSelectionScreen = () => {
         >
           {/* //! this need to be changed to responsive heights */}
           <View style={{ height: 300, backgroundColor: COLORS.primary }} />
+          {/* White background behind card, underneath blue heading */}
           <View style={{ height: 800, backgroundColor: COLORS.white }} />
         </View>
       </View>
