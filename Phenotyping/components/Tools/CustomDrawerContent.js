@@ -5,7 +5,6 @@ import { useDrawerStatus } from "@react-navigation/drawer";
 import { COLORS, FONTS, SIZES, assets, SHADOWS } from "../../constants";
 import { FontAwesome } from "@expo/vector-icons";
 import { StatusBar } from "expo-status-bar";
-import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
 
 const CustomDrawerContent = (props) => {
   const isDrawerOpen = useDrawerStatus() === "open";
@@ -18,7 +17,7 @@ const CustomDrawerContent = (props) => {
           <Image source={assets.person01} style={styles.profilePic} />
           <View style={styles.textContainer}>
             <Text style={styles.userName}>Jake </Text>
-            <Text style={styles.userPosition}>Laboratory Technician </Text>
+            <Text style={styles.userPosition}>Shakoor Lab Technician </Text>
           </View>
         </View>
         <View style={{ flex: 1, marginTop: 15 }}>
@@ -48,14 +47,6 @@ const CustomDrawerContent = (props) => {
             labelStyle={styles.drawerLabel}
             onPress={() => props.navigation.navigate("#")}
             icon={() => <FontAwesome name="gear" size={40} color="#1E3050" />}
-          />
-          <DrawerItem
-            label="Google Glass"
-            labelStyle={styles.drawerLabel}
-            onPress={() => props.navigation.navigate("#")}
-            icon={() => (
-              <FontAwesome5 name="glasses" size={30} color="#1E3050" />
-            )}
           />
         </View>
 
@@ -114,7 +105,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     padding: 20,
-    marginTop: 550, //!this should not be permanent code
+    marginTop: 605, //!this should not be permanent code
     borderTopWidth: 2, // if you want a separator line
     borderTopColor: "gray", // separator color
   },
