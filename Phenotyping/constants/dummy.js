@@ -7,7 +7,7 @@ const NFTData = [
     creator: "Fischer Farm",
     price: 4.25,
     description:
-      "The action painter abstract expressionists were directly influenced by automatism. Pollock channelled this into producing gestural. The action painter abstract expressionists were directly influenced by automatism. Pollock channelled this into producing gestural. The action painter abstract expressionists were directly influenced by automatism. Pollock channelled this into producing gestural.",
+      "Two commercial grain sorghum varieties that grow well in this region have been selected for a 5-year field trial at Fischer Farm. The two varieties will represent the highest and lower/average root biomass estimates based on data from our field experiments. We planted 56 hybrids from 6 of the major sorghum seed companies, including Bayer (Dekalb), Corteva (Pioneer), S&W, Richardson, Scott, and Advanta. In 1.68-acre blocks, two commercial grain varieties will be subjected to 8 combinations of field management practices (total ~13.4 acres).",
     image: assets.nft01,
     bids: [
       {
@@ -33,49 +33,6 @@ const NFTData = [
       },
     ],
   },
-  // {
-  //   id: "NFT-02",
-  //   name: "HPI Diversity Panel",
-  //   creator: "Fischer Farm",
-  //   price: 7.25,
-  //   description:
-  //     "The action painter abstract expressionists were directly influenced by automatism. Pollock channelled this into producing gestural. Nulla sed velit erat vitae leo sem inceptos diam fames arcu hendrerit, quis ultrices in eleifend posuere ipsum conubia porttitor felis.",
-  //   image: assets.nft02,
-  //   bids: [
-  //     {
-  //       id: "BID-21",
-  //       name: "Jessica Tan",
-  //       price: 7.05,
-  //       image: assets.person04,
-  //       date: "December 12, 2019 at 12:10 PM",
-  //     },
-  //   ],
-  // },
-  // {
-  //   id: "NFT-03",
-  //   name: "Climate Smart",
-  //   creator: "Fischer Farm",
-  //   price: 95.25,
-  //   description:
-  //     "The action painter abstract expressionists were directly influenced by automatism. Pollock channelled this into producing gestural. Lorem ipsum dolor sit amet consectetur adipiscing elit consequat accumsan sapien, lectus convallis malesuada odio curae habitasse dignissim nascetur. Nulla sed velit erat vitae leo sem inceptos diam fames arcu hendrerit, quis ultrices in eleifend posuere ipsum conubia porttitor felis. Lorem ipsum dolor sit amet consectetur adipiscing elit consequat accumsan sapien, lectus convallis malesuada odio curae habitasse dignissim nascetur. Nulla sed velit erat vitae leo sem inceptos diam fames arcu hendrerit, quis ultrices in eleifend posuere ipsum conubia porttitor felis.",
-  //   image: assets.nft03,
-  //   bids: [
-  //     {
-  //       id: "BID-31",
-  //       name: "Jessica Tan",
-  //       price: 95.25,
-  //       image: assets.person02,
-  //       date: "December 12, 2019 at 12:10 PM",
-  //     },
-  //     {
-  //       id: "BID-32",
-  //       name: "Jennifer Sia",
-  //       price: 95.5,
-  //       image: assets.person03,
-  //       date: "December 27, 2019 at 1:50 PM",
-  //     },
-  //   ],
-  // },
 ];
 
 export { NFTData };
