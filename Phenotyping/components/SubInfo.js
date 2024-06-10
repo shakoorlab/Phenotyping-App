@@ -103,7 +103,7 @@ export const EndDate = () => {
           color: COLORS.primary,
         }}
       >
-        South Carolina
+        Missouri
       </Text>
     </View>
   );
