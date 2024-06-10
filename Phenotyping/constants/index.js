@@ -1,5 +1,5 @@
 import assets from "./assets";
-import { COLORS, SHADOWS, SIZES, FONTS } from "./theme";
+import { COLORS, SHADOWS, SIZES, FONTS } from "../styles/theme";
 import { NFTData } from "./dummy";
 import { CircleButton, RectButton } from "../components/Button";
 import { SubInfo } from "../components/SubInfo";
