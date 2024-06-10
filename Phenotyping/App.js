@@ -12,11 +12,12 @@ import QuestionsScreen from "./screens/questionaire/QuestionsScreen";
 import MeasurementSelectionScreen from "./screens/measurement_selection/MeasurementSelectionScreen";
 import CustomDrawerContent from "./components/Tools/CustomDrawerContent";
 import MapScreen from "./screens/mapview/MapScreen";
+import { AuthProvider, useAuth } from "./context/AuthContext";
 
 const Stack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
 
-function MainStackNavigator() {
+function AuthStackNavigator() {
   return (
     <Stack.Navigator
       initialRouteName="OnboardingScreen"
@@ -25,6 +26,16 @@ function MainStackNavigator() {
       <Stack.Screen name="Onboarding" component={OnboardingScreen} />
       <Stack.Screen name="Login" component={LoginScreen} />
       <Stack.Screen name="SignUp" component={SignupScreen} />
+    </Stack.Navigator>
+  );
+}
+
+function MainStackNavigator() {
+  return (
+    <Stack.Navigator
+      initialRouteName="FieldSelection"
+      screenOptions={{ headerShown: false }}
+    >
       <Stack.Screen name="FieldSelection" component={FieldSelectionScreen} />
       <Stack.Screen name="Details" component={Details} />
       <Stack.Screen
@@ -34,6 +45,29 @@ function MainStackNavigator() {
       <Stack.Screen name="PlotRowSelection" component={MapScreen} />
       <Stack.Screen name="QuestionsScreen" component={QuestionsScreen} />
     </Stack.Navigator>
+  );
+}
+
+function AppNavigator() {
+  const { user } = useAuth();
+
+  return (
+    <NavigationContainer>
+      {user ? (
+        <Drawer.Navigator
+          drawerContent={(props) => <CustomDrawerContent {...props} />}
+          screenOptions={{ drawerType: "slide", drawerStyle: { width: "60%" } }}
+        >
+          <Drawer.Screen
+            name="MainStack"
+            component={MainStackNavigator}
+            options={{ headerShown: false }}
+          />
+        </Drawer.Navigator>
+      ) : (
+        <AuthStackNavigator />
+      )}
+    </NavigationContainer>
   );
 }
 
@@ -49,20 +83,9 @@ function App() {
   if (!loaded) return null;
 
   return (
-    <NavigationContainer>
-      <Drawer.Navigator
-        drawerContent={(props) => <CustomDrawerContent {...props} />}
-        screenOptions={{ drawerType: "slide", drawerStyle: { width: "60%" } }}
-      >
-        {/* The name 'MainStack' can be any name you choose */}
-        <Drawer.Screen
-          name="MainStack"
-          component={MainStackNavigator}
-          options={{ headerShown: false }}
-        />
-        {/* Add more drawer screens if needed */}
-      </Drawer.Navigator>
-    </NavigationContainer>
+    <AuthProvider>
+      <AppNavigator />
+    </AuthProvider>
   );
 }
 
