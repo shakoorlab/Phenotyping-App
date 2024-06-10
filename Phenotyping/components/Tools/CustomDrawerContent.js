@@ -5,9 +5,16 @@ import { useDrawerStatus } from "@react-navigation/drawer";
 import { COLORS, FONTS, SIZES, assets, SHADOWS } from "../../constants";
 import { FontAwesome } from "@expo/vector-icons";
 import { StatusBar } from "expo-status-bar";
+import { useAuth } from "../../context/AuthContext";
+import { CommonActions } from "@react-navigation/native"; // Import CommonActions
 
 const CustomDrawerContent = (props) => {
   const isDrawerOpen = useDrawerStatus() === "open";
+  const { logout } = useAuth();
+
+  const handleLogout = () => {
+    logout(); // Clear the user authentication state
+  };
 
   return (
     <>
@@ -52,10 +59,7 @@ const CustomDrawerContent = (props) => {
 
         {/* Footer container for the logout button */}
         <View style={styles.footerContainer}>
-          <TouchableOpacity
-            style={styles.logoutButton}
-            onPress={() => props.navigation.navigate("Login")} // Adjust the navigate function as necessary
-          >
+          <TouchableOpacity style={styles.logoutButton} onPress={handleLogout}>
             <Text style={styles.logoutButtonText}>Log Out</Text>
           </TouchableOpacity>
         </View>

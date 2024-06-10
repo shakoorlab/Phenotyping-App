@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import {
   View,
   Text,
@@ -5,18 +6,35 @@ import {
   TextInput,
   TouchableOpacity,
   StyleSheet,
+  KeyboardAvoidingView,
 } from "react-native";
-import React from "react";
 import { StatusBar } from "expo-status-bar";
 import Animated, { FadeInDown, FadeInUp } from "react-native-reanimated";
 import { useNavigation } from "@react-navigation/native";
+import { FIREBASE_AUTH } from "../../FirebaseConfig";
+import { createUserWithEmailAndPassword } from "firebase/auth";
 
 export default function SignUpScreen() {
   const navigation = useNavigation();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
+  const auth = FIREBASE_AUTH;
 
-  // const handleLogin = () => {
-  //   navigation.navigate("FieldSelection");
-  // };
+  const handleSignUp = () => {
+    setLoading(true);
+    createUserWithEmailAndPassword(auth, email, password)
+      .then(() => {
+        setLoading(false);
+        alert("Check your email to sign up");
+        setEmail(""); // Clear email input
+        setPassword(""); // Clear password input
+      })
+      .catch((error) => {
+        setLoading(false);
+        alert("Login failed: " + error.message);
+      });
+  };
 
   return (
     <View style={styles.container}>
@@ -41,52 +59,58 @@ export default function SignUpScreen() {
         </View>
 
         {/* Form */}
-        <View style={styles.formContainer}>
-          <Animated.View
-            style={styles.inputContainer}
-            entering={FadeInDown.duration(1000).springify()}
-          >
-            <TextInput
-              placeholder="Email"
-              placeholderTextColor="gray"
-              style={styles.input}
-            />
-          </Animated.View>
-          <Animated.View
-            style={[styles.inputContainer, styles.inputMargin]}
-            entering={FadeInDown.delay(200).duration(1000).springify()}
-          >
-            <TextInput
-              placeholder="Password"
-              placeholderTextColor="gray"
-              secureTextEntry
-              style={styles.input}
-            />
-          </Animated.View>
-
-          {/* Login Button */}
-          <Animated.View style={styles.buttonContainer}>
-            <TouchableOpacity
-              onPress={() => navigation.push("FieldSelection")}
-              style={styles.button}
-              entering={FadeInDown.delay(400).duration(1000).springify()}
+        <KeyboardAvoidingView behavior="padding">
+          <View style={styles.formContainer}>
+            <Animated.View
+              style={styles.inputContainer}
+              entering={FadeInDown.duration(1000).springify()}
             >
-              <Text style={styles.buttonText}>Sign Up</Text>
-            </TouchableOpacity>
-          </Animated.View>
+              <TextInput
+                value={email}
+                placeholder="Email"
+                placeholderTextColor="gray"
+                style={styles.input}
+                onChangeText={setEmail}
+              />
+            </Animated.View>
+            <Animated.View
+              style={[styles.inputContainer, styles.inputMargin]}
+              entering={FadeInDown.delay(200).duration(1000).springify()}
+            >
+              <TextInput
+                value={password}
+                placeholder="Password"
+                placeholderTextColor="gray"
+                secureTextEntry
+                style={styles.input}
+                onChangeText={setPassword}
+              />
+            </Animated.View>
 
-          {/* Directing to Signing Up */}
-          <Animated.View
-            style={styles.signupContainer}
-            entering={FadeInDown.delay(600).duration(1000).springify()}
-          >
-            <Text>Have an account?</Text>
-            {/* Link to Sign Up Page */}
-            <TouchableOpacity onPress={() => navigation.push("Login")}>
-              <Text style={styles.signupText}>Login</Text>
-            </TouchableOpacity>
-          </Animated.View>
-        </View>
+            {/* Login Button */}
+            <Animated.View style={styles.buttonContainer}>
+              <TouchableOpacity
+                onPress={handleSignUp}
+                style={styles.button}
+                entering={FadeInDown.delay(400).duration(1000).springify()}
+              >
+                <Text style={styles.buttonText}>Sign Up</Text>
+              </TouchableOpacity>
+            </Animated.View>
+
+            {/* Directing to Signing Up */}
+            <Animated.View
+              style={styles.signupContainer}
+              entering={FadeInDown.delay(600).duration(1000).springify()}
+            >
+              <Text>Have an account?</Text>
+              {/* Link to Sign Up Page */}
+              <TouchableOpacity onPress={() => navigation.push("Login")}>
+                <Text style={styles.signupText}>Login</Text>
+              </TouchableOpacity>
+            </Animated.View>
+          </View>
+        </KeyboardAvoidingView>
       </View>
     </View>
   );

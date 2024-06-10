@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import {
   View,
   Text,
@@ -5,18 +6,39 @@ import {
   TextInput,
   TouchableOpacity,
   StyleSheet,
+  ActivityIndicator,
 } from "react-native";
-import React from "react";
 import { StatusBar } from "expo-status-bar";
 import Animated, { FadeInDown, FadeInUp } from "react-native-reanimated";
 import { useNavigation } from "@react-navigation/native";
+import { FIREBASE_AUTH } from "../../FirebaseConfig";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { useAuth } from "../../context/AuthContext";
 
 export default function LoginScreen() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
+  const auth = FIREBASE_AUTH;
+  const { login } = useAuth();
   const navigation = useNavigation();
 
-  // const handleLogin = () => {
-  //   navigation.navigate("FieldSelection");
-  // };
+  const handleLogin = () => {
+    setLoading(true);
+    signInWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        setLoading(false);
+        login(userCredential.user); // Set user in context
+      })
+      .catch((error) => {
+        setLoading(false);
+        if (error.code === "auth/invalid-credential") {
+          alert("Incorrect Password");
+        } else {
+          alert(error.message);
+        }
+      });
+  };
 
   return (
     <View style={styles.container}>
@@ -47,9 +69,11 @@ export default function LoginScreen() {
             entering={FadeInDown.duration(1000).springify()}
           >
             <TextInput
+              value={email}
               placeholder="Email"
               placeholderTextColor="gray"
               style={styles.input}
+              onChangeText={setEmail}
             />
           </Animated.View>
           <Animated.View
@@ -57,21 +81,28 @@ export default function LoginScreen() {
             entering={FadeInDown.delay(200).duration(1000).springify()}
           >
             <TextInput
+              value={password}
               placeholder="Password"
               placeholderTextColor="gray"
               secureTextEntry
               style={styles.input}
+              onChangeText={setPassword}
             />
           </Animated.View>
 
           {/* Login Button */}
           <Animated.View style={styles.buttonContainer}>
             <TouchableOpacity
-              onPress={() => navigation.push("FieldSelection")}
+              onPress={handleLogin}
               style={styles.button}
               entering={FadeInDown.delay(400).duration(1000).springify()}
+              disabled={loading}
             >
-              <Text style={styles.buttonText}>Login</Text>
+              {loading ? (
+                <ActivityIndicator size="small" color="white" />
+              ) : (
+                <Text style={styles.buttonText}>Login</Text>
+              )}
             </TouchableOpacity>
           </Animated.View>
 
