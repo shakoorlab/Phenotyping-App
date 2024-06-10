@@ -11,7 +11,7 @@ import {
 import { StatusBar } from "expo-status-bar";
 import Animated, { FadeInDown, FadeInUp } from "react-native-reanimated";
 import { useNavigation } from "@react-navigation/native";
-import { FIREBASE_AUTH } from "../../FirebaseConfig";
+import { FIREBASE_AUTH } from "../../../FirebaseConfig";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 
 export default function SignUpScreen() {
@@ -43,7 +43,7 @@ export default function SignUpScreen() {
       {/* Background */}
       <Image
         style={styles.backgroundImage}
-        source={require("../../assets/images/2.png")}
+        source={require("../../../assets/images/signup_bg.png")}
       />
 
       {/* Title and Form */}

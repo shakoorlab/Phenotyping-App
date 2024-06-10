@@ -42,7 +42,7 @@ export default function OnboardingScreen() {
                     height: wp("70%"), // 50% of screen width, for a square logo
                     resizeMode: "contain",
                   }}
-                  source={require("../../assets/lotties/security-research.json")}
+                  source={require("../../../assets/lotties/security-research.json")}
                   autoPlay
                   loop
                 />
@@ -61,7 +61,7 @@ export default function OnboardingScreen() {
                     height: wp("70%"), // 50% of screen width, for a square logo
                     resizeMode: "contain",
                   }}
-                  source={require("../../assets/lotties/plant-sprout.json")}
+                  source={require("../../../assets/lotties/plant-sprout.json")}
                   autoPlay
                   loop
                 />
@@ -81,7 +81,7 @@ export default function OnboardingScreen() {
                     height: wp("70%"), // 50% of screen width, for a square logo
                     resizeMode: "contain",
                   }}
-                  source={require("../../assets/lotties/search.json")}
+                  source={require("../../../assets/lotties/search.json")}
                   autoPlay
                   loop
                 />
@@ -101,7 +101,7 @@ export default function OnboardingScreen() {
                     height: wp("70%"), // 50% of screen width, for a square logo
                     resizeMode: "contain",
                   }}
-                  source={require("../../assets/lotties/boost.json")}
+                  source={require("../../../assets/lotties/boost.json")}
                   autoPlay
                   loop
                 />
@@ -121,7 +121,7 @@ export default function OnboardingScreen() {
                     height: wp("70%"), // 50% of screen width, for a square logo
                     resizeMode: "contain",
                   }}
-                  source={require("../../assets/lotties/google.json")}
+                  source={require("../../../assets/lotties/google.json")}
                   autoPlay
                   loop
                 />
@@ -141,7 +141,7 @@ export default function OnboardingScreen() {
                     height: wp("70%"), // 50% of screen width, for a square logo
                     resizeMode: "contain",
                   }}
-                  source={require("../../assets/lotties/confetti.json")}
+                  source={require("../../../assets/lotties/confetti.json")}
                   autoPlay
                   loop
                 />

@@ -11,34 +11,13 @@ import {
 import { StatusBar } from "expo-status-bar";
 import Animated, { FadeInDown, FadeInUp } from "react-native-reanimated";
 import { useNavigation } from "@react-navigation/native";
-import { FIREBASE_AUTH } from "../../FirebaseConfig";
-import { signInWithEmailAndPassword } from "firebase/auth";
-import { useAuth } from "../../context/AuthContext";
+import { useLogin } from "../../../hooks/useLogin";
 
 export default function LoginScreen() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [loading, setLoading] = useState(false);
-  const auth = FIREBASE_AUTH;
-  const { login } = useAuth();
+  const { handleLogin, loading } = useLogin();
   const navigation = useNavigation();
-
-  const handleLogin = () => {
-    setLoading(true);
-    signInWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        setLoading(false);
-        login(userCredential.user); // Set user in context
-      })
-      .catch((error) => {
-        setLoading(false);
-        if (error.code === "auth/invalid-credential") {
-          alert("Incorrect Password");
-        } else {
-          alert(error.message);
-        }
-      });
-  };
 
   return (
     <View style={styles.container}>
@@ -47,7 +26,7 @@ export default function LoginScreen() {
       {/* Background */}
       <Image
         style={styles.backgroundImage}
-        source={require("../../assets/images/2.png")}
+        source={require("../../../assets/images/login_bg.png")}
       />
 
       {/* Title and Form */}
@@ -93,7 +72,7 @@ export default function LoginScreen() {
           {/* Login Button */}
           <Animated.View style={styles.buttonContainer}>
             <TouchableOpacity
-              onPress={handleLogin}
+              onPress={() => handleLogin(email, password)}
               style={styles.button}
               entering={FadeInDown.delay(400).duration(1000).springify()}
               disabled={loading}
