@@ -2,9 +2,11 @@ import { View, Text, Image, TextInput } from "react-native";
 import { COLORS, FONTS, SIZES, assets } from "../../constants";
 import { useNavigation } from "@react-navigation/native";
 import { TouchableOpacity } from "react-native-gesture-handler";
+import { useAuth } from "../../context/AuthContext";
 
 const HomeHeader = ({ onSearch }) => {
   const navigation = useNavigation(); //for custom drawer
+  const { user } = useAuth(); // Get the current user from the context
   return (
     <View
       style={{
@@ -28,7 +30,7 @@ const HomeHeader = ({ onSearch }) => {
         <View style={{ width: 45, height: 45 }}>
           <TouchableOpacity onPress={() => navigation.toggleDrawer()}>
             <Image
-              source={assets.person01}
+              source={{ uri: user?.imageUrl }} // Use the user's randomly assigned image URL
               resizeMode="contain"
               style={{ width: "100%", height: "100%" }}
             />
@@ -55,7 +57,7 @@ const HomeHeader = ({ onSearch }) => {
             color: COLORS.white,
           }}
         >
-          Hello User! 👋
+          Hello {user?.displayName || "User"}! 👋
         </Text>
 
         <Text
