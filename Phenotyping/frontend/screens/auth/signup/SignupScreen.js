@@ -1,3 +1,5 @@
+//This component responsible for rendering the UI and managing the state related to the form inputs
+
 import React, { useState } from "react";
 import {
   View,
@@ -11,29 +13,25 @@ import {
 import { StatusBar } from "expo-status-bar";
 import Animated, { FadeInDown, FadeInUp } from "react-native-reanimated";
 import { useNavigation } from "@react-navigation/native";
-import { FIREBASE_AUTH } from "../../../FirebaseConfig";
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import useSignUp from "../../../hooks/useSignUp"; // Import the custom hook
 
 export default function SignUpScreen() {
   const navigation = useNavigation();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [loading, setLoading] = useState(false);
-  const auth = FIREBASE_AUTH;
+  const [displayName, setDisplayName] = useState(""); // Add state for display name
+  const { signUp, loading, error } = useSignUp(); // Use the custom hook
 
-  const handleSignUp = () => {
-    setLoading(true);
-    createUserWithEmailAndPassword(auth, email, password)
-      .then(() => {
-        setLoading(false);
-        alert("Check your email to sign up");
-        setEmail(""); // Clear email input
-        setPassword(""); // Clear password input
-      })
-      .catch((error) => {
-        setLoading(false);
-        alert("Login failed: " + error.message);
-      });
+  const handleSignUp = async () => {
+    try {
+      const user = await signUp(email, password, displayName);
+      alert("Sign up successful, check your email to verify");
+      setEmail(""); // Clear email input
+      setPassword(""); // Clear password input
+      setDisplayName(""); // Clear display name input
+    } catch (err) {
+      alert("Sign up failed: " + err.message);
+    }
   };
 
   return (
@@ -61,6 +59,18 @@ export default function SignUpScreen() {
         {/* Form */}
         <KeyboardAvoidingView behavior="padding">
           <View style={styles.formContainer}>
+            <Animated.View
+              style={styles.inputContainer}
+              entering={FadeInDown.duration(1000).springify()}
+            >
+              <TextInput
+                value={displayName}
+                placeholder="Name"
+                placeholderTextColor="gray"
+                style={styles.input}
+                onChangeText={setDisplayName} // Update state for display name
+              />
+            </Animated.View>
             <Animated.View
               style={styles.inputContainer}
               entering={FadeInDown.duration(1000).springify()}
@@ -94,7 +104,9 @@ export default function SignUpScreen() {
                 style={styles.button}
                 entering={FadeInDown.delay(400).duration(1000).springify()}
               >
-                <Text style={styles.buttonText}>Sign Up</Text>
+                <Text style={styles.buttonText}>
+                  {loading ? "Signing Up..." : "Sign Up"}
+                </Text>
               </TouchableOpacity>
             </Animated.View>
 
