@@ -9,12 +9,12 @@ import {
 } from "react-native";
 
 import { COLORS, SIZES, SHADOWS, FONTS } from "../../constants";
-import assets from "../../constants/assets";
+import assets from "../../assets/assets";
 import {
   CircleButton,
   RectButton,
-  DetailsDesc,
-  DetailsBid,
+  ProjectDesc,
+  DataCollected,
   FocusedStatusBar,
 } from "../../components";
 
@@ -76,7 +76,7 @@ const Details = ({ route, navigation }) => {
 
       <FlatList
         data={data.bids}
-        renderItem={({ item }) => <DetailsBid bid={item} />}
+        renderItem={({ item }) => <DataCollected bid={item} />}
         keyExtractor={(item) => item.id}
         showsVerticalScrollIndicator={false}
         contentContainerStyle={{
@@ -87,7 +87,7 @@ const Details = ({ route, navigation }) => {
             <DetailsHeader data={data} navigation={navigation} />
             <SubInfo />
             <View style={{ padding: SIZES.font }}>
-              <DetailsDesc data={data} />
+              <ProjectDesc data={data} />
 
               {data.bids.length > 0 && (
                 <Text
