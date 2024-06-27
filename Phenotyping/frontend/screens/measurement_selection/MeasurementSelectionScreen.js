@@ -3,7 +3,7 @@ import { FocusedStatusBar } from "../../components";
 import { COLORS, SIZES } from "../../constants";
 import { StatusBar } from "expo-status-bar";
 import MeasurementSelectionHeader from "../../components/Headers/MeasurementSelectionHeader";
-import MeasurementCard from "../../components/MeasurementCard";
+import MeasurementCard from "../../components/Card/Measurements/MeasurementCard";
 
 const FieldSelectionScreen = () => {
   return (
