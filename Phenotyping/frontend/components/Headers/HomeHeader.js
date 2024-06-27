@@ -1,5 +1,6 @@
 import { View, Text, Image, TextInput } from "react-native";
-import { COLORS, FONTS, SIZES, assets } from "../../constants";
+import { COLORS, FONTS, SIZES } from "../../constants";
+import assets from "../../assets/assets";
 import { useNavigation } from "@react-navigation/native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { useAuth } from "../../context/AuthContext";

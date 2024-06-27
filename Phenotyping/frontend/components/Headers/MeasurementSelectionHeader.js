@@ -1,5 +1,6 @@
 import { View, Text, Image, TextInput, TouchableOpacity } from "react-native";
-import { COLORS, FONTS, SIZES, assets } from "../../constants";
+import { COLORS, FONTS, SIZES } from "../../constants";
+import assets from "../../assets/assets";
 import { CircleButton } from "../../components";
 import { useNavigation } from "@react-navigation/native";
 

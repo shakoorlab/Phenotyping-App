@@ -7,7 +7,7 @@ import {
   Image,
   TouchableOpacity,
 } from "react-native";
-import { measurementsList } from "../constants";
+import { measurementsList } from "../../../constants";
 import { useNavigation } from "@react-navigation/native";
 
 const MeasurementCard = () => {

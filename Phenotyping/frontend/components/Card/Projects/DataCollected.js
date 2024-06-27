@@ -1,10 +1,10 @@
 import React from "react";
 import { View, Text, Image } from "react-native";
 
-import { EthPrice } from "./SubInfo";
-import { COLORS, SIZES, FONTS } from "../constants";
+import { EthPrice } from "../../SubInfo";
+import { COLORS, SIZES, FONTS } from "../../../constants";
 
-const DetailsBid = ({ bid }) => {
+const DataCollected = ({ bid }) => {
   return (
     <View
       style={{
@@ -56,4 +56,4 @@ const DetailsBid = ({ bid }) => {
   );
 };
 
-export default DetailsBid;
+export default DataCollected;

@@ -1,5 +1,7 @@
 import { View, Text, Image } from "react-native";
-import { COLORS, SIZES, FONTS, SHADOWS, assets } from "../constants";
+import { COLORS, SIZES, FONTS, SHADOWS } from "../constants";
+import { Ionicons } from "@expo/vector-icons";
+import assets from "../assets/assets";
 
 export const Title = ({ title, subTitle, titleSize, subTitleSize }) => {
   return (
@@ -29,10 +31,11 @@ export const Title = ({ title, subTitle, titleSize, subTitleSize }) => {
 export const EthPrice = ({ price }) => {
   return (
     <View style={{ flexDirection: "row", alignItems: "center" }}>
-      <Image
-        source={assets.clock}
+      <Ionicons
+        name="people-outline"
         resizeMode="contain"
-        style={{ width: 20, height: 20, marginRight: 2 }}
+        size={24}
+        style={{ marginRight: 10 }}
       />
       <Text
         style={{

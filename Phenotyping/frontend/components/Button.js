@@ -3,6 +3,7 @@ import { TouchableOpacity, Text, Image } from "react-native";
 
 import { COLORS, SIZES, FONTS, SHADOWS } from "../constants";
 
+//Button for the heart icon
 export const CircleButton = ({ imgURL, handlePress, ...props }) => {
   return (
     <TouchableOpacity
@@ -28,6 +29,7 @@ export const CircleButton = ({ imgURL, handlePress, ...props }) => {
   );
 };
 
+//Button on the project cards to navigate to "details" page, and tells backend which project user has selected
 export const RectButton = ({ minWidth, fontSize, handlePress, ...props }) => {
   return (
     <TouchableOpacity

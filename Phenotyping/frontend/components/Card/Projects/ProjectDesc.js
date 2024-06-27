@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { View, Text } from "react-native";
-import { EthPrice, Title } from "./SubInfo";
-import { COLORS, SIZES, FONTS } from "../constants";
+import { EthPrice, Title } from "../../SubInfo";
+import { COLORS, SIZES, FONTS } from "../../../constants";
 
-const DetailsDesc = ({ data }) => {
+const ProjectDesc = ({ data }) => {
   //--------------- logic for the 'read more' ------------------
   const [text, setText] = useState(data.description.slice(0, 100)); //
   const [readMore, setReadMore] = useState(false);
@@ -46,7 +46,7 @@ const DetailsDesc = ({ data }) => {
           <Text
             style={{
               color: COLORS.secondary,
-              fontSize: SIZES.small, //was originally SIZES.small
+              fontSize: SIZES.small,
               fontFamily: FONTS.regular,
               lineHeight: SIZES.large,
             }}
@@ -78,4 +78,4 @@ const DetailsDesc = ({ data }) => {
   );
 };
 
-export default DetailsDesc;
+export default ProjectDesc;

@@ -2,13 +2,14 @@ import React from "react";
 import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
 import { DrawerItem, DrawerContentScrollView } from "@react-navigation/drawer";
 import { useDrawerStatus } from "@react-navigation/drawer";
-import { COLORS, FONTS, SIZES, assets, SHADOWS } from "../../constants";
+import { COLORS, FONTS, SIZES, SHADOWS } from "../../constants";
 import { FontAwesome } from "@expo/vector-icons";
 import { StatusBar } from "expo-status-bar";
 import { useAuth } from "../../context/AuthContext";
 import { CommonActions } from "@react-navigation/native"; // Import CommonActions
 
 const CustomDrawerContent = (props) => {
+  const { user } = useAuth(); // Get the current user from the context
   const isDrawerOpen = useDrawerStatus() === "open";
   const { logout } = useAuth();
 
@@ -21,7 +22,7 @@ const CustomDrawerContent = (props) => {
       <StatusBar style={isDrawerOpen === "light"} />
       <DrawerContentScrollView {...props} style={styles.drawerContent}>
         <View style={styles.userInfoSection}>
-          <Image source={assets.person01} style={styles.profilePic} />
+          <Image source={{ uri: user?.imageUrl }} style={styles.profilePic} />
           <View style={styles.textContainer}>
             <Text style={styles.userName}>Jake </Text>
             <Text style={styles.userPosition}>Shakoor Lab Technician </Text>

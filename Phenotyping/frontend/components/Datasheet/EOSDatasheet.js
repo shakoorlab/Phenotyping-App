@@ -171,7 +171,7 @@ export default function Datasheet() {
       />
 
       <View style={styles.switchContainer}>
-        <Text>Save my details</Text>
+        <Text>Mark as completed</Text>
         <Switch
           value={saveDetails}
           onValueChange={() => setSaveDetails(!saveDetails)}
