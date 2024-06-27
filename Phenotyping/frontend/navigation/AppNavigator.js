@@ -2,7 +2,7 @@
 import * as React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createDrawerNavigator } from "@react-navigation/drawer";
-import CustomDrawerContent from "../components/Tools/CustomDrawerContent";
+import CustomDrawerContent from "../components/Drawer/CustomDrawerContent";
 import { useAuth } from "../context/AuthContext";
 import AuthStackNavigator from "./AuthStackNavigator";
 import MainStackNavigator from "./MainStackNavigator";
