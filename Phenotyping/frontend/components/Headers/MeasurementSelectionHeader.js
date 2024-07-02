@@ -3,8 +3,10 @@ import { COLORS, FONTS, SIZES } from "../../constants";
 import assets from "../../assets/assets";
 import { CircleButton } from "../../components";
 import { useNavigation } from "@react-navigation/native";
+import { useAuth } from "../../context/AuthContext";
 
 const MeasurementSelectionHeader = () => {
+  const { user } = useAuth(); // Get the current user from the context
   const navigation = useNavigation();
   return (
     <View
@@ -31,12 +33,11 @@ const MeasurementSelectionHeader = () => {
           handlePress={() => navigation.goBack()}
           style={{ width: 90, height: 25 }}
         />
-        {/* //! why does this work?^^--------- */}
 
         <View style={{ width: 45, height: 45 }}>
           <TouchableOpacity onPress={() => navigation.toggleDrawer()}>
             <Image
-              source={assets.person01}
+              source={{ uri: user?.imageUrl }}
               resizeMode="contain"
               style={{ width: "100%", height: "100%" }}
             />
