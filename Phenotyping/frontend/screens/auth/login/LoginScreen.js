@@ -26,7 +26,7 @@ export default function LoginScreen() {
       {/* Background */}
       <Image
         style={styles.backgroundImage}
-        source={require("../../../assets/images/login_bg.png")}
+        source={require("../../../assets/images/login_bg.webp")}
       />
 
       {/* Title and Form */}
