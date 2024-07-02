@@ -41,7 +41,7 @@ export default function SignUpScreen() {
       {/* Background */}
       <Image
         style={styles.backgroundImage}
-        source={require("../../../assets/images/signup_bg.png")}
+        source={require("../../../assets/images/signup_bg1.webp")}
       />
 
       {/* Title and Form */}
