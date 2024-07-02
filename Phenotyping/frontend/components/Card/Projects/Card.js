@@ -12,6 +12,7 @@ const Card = ({ data }) => {
     <View
       style={{
         backgroundColor: COLORS.white,
+        borderWidth: 0.3,
         borderRadius: SIZES.font,
         marginBottom: SIZES.extraLarge,
         margin: SIZES.base,
