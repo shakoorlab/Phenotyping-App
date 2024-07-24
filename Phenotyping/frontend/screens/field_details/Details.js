@@ -1,48 +1,15 @@
 import React from "react";
-import {
-  View,
-  Text,
-  SafeAreaView,
-  Image,
-  StatusBar,
-  FlatList,
-} from "react-native";
+import { View, Text, SafeAreaView, FlatList } from "react-native";
 
 import { COLORS, SIZES, SHADOWS, FONTS } from "../../constants";
-import assets from "../../assets/assets";
 import {
-  CircleButton,
   RectButton,
   ProjectDesc,
   DataCollected,
   FocusedStatusBar,
 } from "../../components";
-
 import { SubInfo } from "../../constants";
-
-const DetailsHeader = ({ data, navigation }) => (
-  <View style={{ width: "100%", height: 373 }}>
-    <Image
-      source={data.image}
-      resizeMode="cover"
-      style={{ width: "100%", height: "100%" }}
-    />
-
-    <CircleButton
-      imgURL={assets.left}
-      handlePress={() => navigation.goBack()}
-      left={15}
-      top={StatusBar.currentHeight + 10}
-    />
-
-    <CircleButton
-      imgURL={assets.storm} //originally was assets.heart
-      right={15}
-      top={StatusBar.currentHeight + 10}
-      handlePress={() => navigation.navigate("Weather")}
-    />
-  </View>
-);
+import DetailsHeader from "../../components/Headers/DetailsHeader"; // Importing the DetailsHeader component
 
 const Details = ({ route, navigation }) => {
   const { data } = route.params;
@@ -66,6 +33,7 @@ const Details = ({ route, navigation }) => {
           zIndex: 1,
         }}
       >
+        {/* //* 'Select' button that takes user to measurements selection */}
         <RectButton
           minWidth={170}
           fontSize={SIZES.large}
@@ -74,9 +42,10 @@ const Details = ({ route, navigation }) => {
         />
       </View>
 
+      {/* //* "Last Collected" data list */}
       <FlatList
-        data={data.bids}
-        renderItem={({ item }) => <DataCollected bid={item} />}
+        data={data.collectors}
+        renderItem={({ item }) => <DataCollected collector={item} />}
         keyExtractor={(item) => item.id}
         showsVerticalScrollIndicator={false}
         contentContainerStyle={{
@@ -89,7 +58,7 @@ const Details = ({ route, navigation }) => {
             <View style={{ padding: SIZES.font }}>
               <ProjectDesc data={data} />
 
-              {data.bids.length > 0 && (
+              {data.collectors.length > 0 && (
                 <Text
                   style={{
                     fontSize: SIZES.font,
