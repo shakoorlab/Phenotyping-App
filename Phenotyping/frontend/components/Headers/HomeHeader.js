@@ -90,8 +90,9 @@ const HomeHeader = ({ onSearch }) => {
             resizeMode="contain"
             style={{ width: 20, height: 20, marginRight: SIZES.base }}
           />
-          <TextInput
+          <TextInput //! this should bring up the keyboard
             placeholder="Search locations"
+            placeholderTextColor="#e0e0e0"
             style={{ flex: 1 }}
             onChangeText={onSearch}
           />
