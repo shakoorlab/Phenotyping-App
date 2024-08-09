@@ -1,23 +1,32 @@
-import { View, FlatList, SafeAreaView, Text } from "react-native";
-import { FocusedStatusBar } from "../../components";
+import { View, FlatList, Text } from "react-native";
 import { COLORS, SIZES } from "../../constants";
 import { StatusBar } from "expo-status-bar";
 import MeasurementSelectionHeader from "../../components/Headers/MeasurementSelectionHeader";
-import MeasurementCard from "../../components/Card/Measurements/MeasurementCard";
+import { LinearGradient } from "expo-linear-gradient";
+import MeasurementsHeader from "../../components/Headers/Measurements";
 
-const FieldSelectionScreen = () => {
+const MeasurementSelectionScreen = () => {
   return (
-    <SafeAreaView style={{ flex: 1 }}>
-      <FocusedStatusBar background={COLORS.primary} />
-      <StatusBar style="dark" />
+    <View style={{ flex: 1 }}>
+      <StatusBar style="light" />
       <View style={{ flex: 1 }}>
         <View style={{ zIndex: 0 }}>
           <FlatList
+            renderItem={({ item }) => (
+              <Animated.View entering={FadeInUp.duration(1000).springify()}>
+                {/* <Card data={item} /> */}
+              </Animated.View>
+            )}
+            keyExtractor={(item) => item._id}
             showsVerticalScrollIndicator={false}
-            ListHeaderComponent={<MeasurementSelectionHeader />}
+            ListHeaderComponent={
+              <>
+                <MeasurementSelectionHeader />
+                <MeasurementsHeader />
+              </>
+            }
           />
         </View>
-
         <View
           style={{
             position: "absolute",
@@ -28,33 +37,22 @@ const FieldSelectionScreen = () => {
             zIndex: -1,
           }}
         >
-          {/* //! this need to be changed to responsive heights */}
-          <View style={{ height: 220, backgroundColor: COLORS.primary }} />
-          <View style={{ flex: 1 }}>
-            <View
-              style={{
-                height: 1000,
-                backgroundColor: "#f8f8ff", //originall COLORS.white
-                paddingHorizontal: SIZES.base * 2,
-              }}
-            >
-              <Text
-                style={{
-                  fontSize: 22,
-                  fontWeight: "bold",
-                  marginTop: 22,
-                  marginBottom: 22,
-                  textAlign: "center",
-                }}
-              >
-                Season Measurements
-              </Text>
-              <MeasurementCard />
-            </View>
-          </View>
+          {/* Blue portion of the Projects Selection page */}
+          <LinearGradient
+            colors={["#0B3731", "#0D4A3F"]}
+            style={{
+              height: 370,
+              borderBottomLeftRadius: 20,
+              borderBottomRightRadius: 20,
+              overflow: "hidden",
+            }}
+          />
+
+          {/* White background behind card, underneath blue heading */}
+          <View style={{ height: 800, backgroundColor: COLORS.white }} />
         </View>
       </View>
-    </SafeAreaView>
+    </View>
   );
 };
-export default FieldSelectionScreen;
+export default MeasurementSelectionScreen;

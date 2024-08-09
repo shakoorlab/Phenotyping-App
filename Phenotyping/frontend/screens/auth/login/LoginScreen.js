@@ -23,11 +23,14 @@ export default function LoginScreen() {
     <View style={styles.container}>
       <StatusBar style="light" />
 
-      {/* Background */}
-      <Image
-        style={styles.backgroundImage}
-        source={require("../../../assets/images/login_bg.webp")}
-      />
+      {/* Background with opacity */}
+      <View style={styles.backgroundContainer}>
+        <Image
+          style={styles.backgroundImage}
+          source={require("../../../assets/images/farm3.webp")}
+        />
+        <View style={styles.overlay} />
+      </View>
 
       {/* Title and Form */}
       <View style={styles.contentContainer}>
@@ -37,7 +40,7 @@ export default function LoginScreen() {
             style={styles.titleText}
             entering={FadeInUp.duration(1000).springify()}
           >
-            Login
+            FieldFocus
           </Animated.Text>
         </View>
 
@@ -90,7 +93,7 @@ export default function LoginScreen() {
             style={styles.signupContainer}
             entering={FadeInDown.delay(600).duration(1000).springify()}
           >
-            <Text>Don't have an account?</Text>
+            <Text style={styles.accountText}>Don't have an account?</Text>
             {/* Link to Sign Up Page */}
             <TouchableOpacity onPress={() => navigation.push("SignUp")}>
               <Text style={styles.signupText}>Sign Up</Text>
@@ -107,10 +110,20 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     flex: 1,
   },
-  backgroundImage: {
+  backgroundContainer: {
     position: "absolute",
     width: "100%",
     height: "100%",
+  },
+  backgroundImage: {
+    width: "100%",
+    height: "100%",
+  },
+  overlay: {
+    position: "absolute",
+    width: "100%",
+    height: "100%",
+    backgroundColor: "rgba(0, 0, 0, 0.6)", // Adjust the opacity here
   },
   contentContainer: {
     flex: 1,
@@ -132,7 +145,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 16,
   },
   inputContainer: {
-    backgroundColor: "rgba(0,0,0,0.05)",
+    backgroundColor: "rgba(255,255,255,0.9)",
     padding: 20,
     borderRadius: 30,
     width: "100%",
@@ -148,7 +161,7 @@ const styles = StyleSheet.create({
     width: "100%",
   },
   button: {
-    backgroundColor: "#00bfff", // Equivalent to Tailwind's sky-400
+    backgroundColor: "#1C6B5E", // #339F7A Equivalent to Tailwind's sky-400 #00bfff
     padding: 12,
     borderRadius: 30,
     marginBottom: 12,
@@ -163,8 +176,12 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "center",
   },
+  accountText: {
+    color: "white",
+  },
   signupText: {
-    color: "#00bfff", // Equivalent to Tailwind's sky-600
+    color: "#80D9BB", // Equivalent to Tailwind's sky-600
     marginLeft: 10,
+    fontWeight: "bold",
   },
 });

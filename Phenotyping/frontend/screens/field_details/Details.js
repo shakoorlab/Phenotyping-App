@@ -1,26 +1,15 @@
 import React from "react";
-import { View, Text, SafeAreaView, FlatList } from "react-native";
+import { View, Text, FlatList } from "react-native";
 
 import { COLORS, SIZES, SHADOWS, FONTS } from "../../constants";
-import {
-  RectButton,
-  ProjectDesc,
-  DataCollected,
-  FocusedStatusBar,
-} from "../../components";
+import { RectButton, ProjectDesc, DataCollected } from "../../components";
 import { SubInfo } from "../../constants";
 import DetailsHeader from "../../components/Headers/DetailsHeader"; // Importing the DetailsHeader component
 
 const Details = ({ route, navigation }) => {
   const { data } = route.params;
   return (
-    <SafeAreaView style={{ flex: 1 }}>
-      <FocusedStatusBar
-        barStyle="dark-content"
-        backgroundColor="transparent"
-        translucent={true}
-      />
-
+    <View style={{ flex: 1 }}>
       <View
         style={{
           width: "100%",
@@ -29,19 +18,20 @@ const Details = ({ route, navigation }) => {
           paddingVertical: SIZES.font,
           justifyContent: "center",
           alignItems: "center",
-          backgroundColor: "rgba(255,255,255,0.5)",
+          backgroundColor: "rgba(242,242,242,1)",
           zIndex: 1,
         }}
       >
         {/* //* 'Select' button that takes user to measurements selection */}
         <RectButton
-          minWidth={170}
+          // minWidth={170}
           fontSize={SIZES.large}
           {...SHADOWS.dark}
-          handlePress={() => navigation.navigate("MeasurementSelectionScreen")}
+          handlePress={() =>
+            navigation.navigate("MeasurementSelectionScreen", { data })
+          }
         />
       </View>
-
       {/* //* "Last Collected" data list */}
       <FlatList
         data={data.collectors}
@@ -73,7 +63,7 @@ const Details = ({ route, navigation }) => {
           </React.Fragment>
         )}
       />
-    </SafeAreaView>
+    </View>
   );
 };
 
