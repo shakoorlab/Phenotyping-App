@@ -17,6 +17,7 @@ function MainStackNavigator() {
     >
       <Stack.Screen name="FieldSelection" component={FieldSelectionScreen} />
       <Stack.Screen name="Details" component={Details} />
+
       <Stack.Screen
         name="MeasurementSelectionScreen"
         component={MeasurementSelectionScreen}
