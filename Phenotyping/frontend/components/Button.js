@@ -4,7 +4,31 @@ import { TouchableOpacity, Text, Image } from "react-native";
 import { COLORS, SIZES, FONTS, SHADOWS } from "../constants";
 
 //Button for the heart icon
-export const CircleButton = ({ imgURL, handlePress, ...props }) => {
+export const BackButton = ({ imgUrl, handlePress, ...props }) => {
+  return (
+    <TouchableOpacity
+      style={{
+        width: 40,
+        height: 40,
+        // backgroundColor: COLORS.white,
+        position: "absolute",
+        // borderRadius: SIZES.extraLarge,
+        alignItems: "center",
+        justifyContent: "center",
+        // ...SHADOWS.light,
+        ...props,
+      }}
+      onPress={handlePress}
+    >
+      <Image
+        source={imgUrl}
+        resizeMode="contain"
+        style={{ width: 30, height: 30 }}
+      />
+    </TouchableOpacity>
+  );
+};
+export const CircleButton = ({ imgUrl, handlePress, ...props }) => {
   return (
     <TouchableOpacity
       style={{
@@ -21,9 +45,9 @@ export const CircleButton = ({ imgURL, handlePress, ...props }) => {
       onPress={handlePress}
     >
       <Image
-        source={imgURL}
+        source={imgUrl}
         resizeMode="contain"
-        style={{ width: 24, height: 24 }}
+        style={{ width: 24, height: 30 }}
       />
     </TouchableOpacity>
   );
@@ -34,10 +58,12 @@ export const RectButton = ({ minWidth, fontSize, handlePress, ...props }) => {
   return (
     <TouchableOpacity
       style={{
-        backgroundColor: COLORS.primary,
+        backgroundColor: "#0D4A3F",
         padding: SIZES.small,
-        borderRadius: SIZES.extraLarge,
-        minWidth: minWidth,
+        borderRadius: SIZES.medium,
+        minWidth: minWidth || "80%",
+        alignItems: "center", // Center the content horizontally
+        justifyContent: "center", // Center the content vertically
         ...SHADOWS.light,
         ...props,
       }}
@@ -52,6 +78,33 @@ export const RectButton = ({ minWidth, fontSize, handlePress, ...props }) => {
         }}
       >
         Get Started
+      </Text>
+    </TouchableOpacity>
+  );
+};
+
+export const SelectButton = ({ minWidth, fontSize, handlePress, ...props }) => {
+  return (
+    <TouchableOpacity
+      style={{
+        backgroundColor: "#11645E",
+        padding: SIZES.small,
+        borderRadius: SIZES.medium,
+        minWidth: minWidth,
+        ...SHADOWS.light,
+        ...props,
+      }}
+      onPress={handlePress}
+    >
+      <Text
+        style={{
+          fontFamily: FONTS.semiBold,
+          fontSize: SIZES.medium,
+          color: COLORS.white,
+          textAlign: "center",
+        }}
+      >
+        Select
       </Text>
     </TouchableOpacity>
   );

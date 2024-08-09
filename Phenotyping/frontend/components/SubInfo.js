@@ -3,6 +3,7 @@ import { COLORS, SIZES, FONTS, SHADOWS } from "../constants";
 import { Ionicons } from "@expo/vector-icons";
 import assets from "../assets/assets";
 
+//* component that is exported to Card.js to show the title and subtitle on the Project card
 export const Title = ({ title, subTitle, titleSize, subTitleSize }) => {
   return (
     <View>
@@ -28,7 +29,8 @@ export const Title = ({ title, subTitle, titleSize, subTitleSize }) => {
   );
 };
 
-export const EthPrice = ({ price }) => {
+//* This component is used for the "# people here" to visually tell the user how many data collectors are at a Project
+export const DataCollectors = ({ collecting }) => {
   return (
     <View style={{ flexDirection: "row", alignItems: "center" }}>
       <Ionicons
@@ -44,12 +46,34 @@ export const EthPrice = ({ price }) => {
           color: COLORS.primary,
         }}
       >
-        {price}
+        {collecting} people here
       </Text>
     </View>
   );
 };
+export const PlotCollected = ({ collected_from }) => {
+  return (
+    <View style={{ flexDirection: "row", alignItems: "center" }}>
+      <Ionicons
+        name="checkbox-outline"
+        resizeMode="contain"
+        size={24}
+        style={{ marginRight: 10 }}
+      />
+      {/* <Text
+        style={{
+          fontFamily: FONTS.medium,
+          fontSize: SIZES.font,
+          color: COLORS.primary,
+        }}
+      >
+        {collected_from}
+      </Text> */}
+    </View>
+  );
+};
 
+//*avatar icons on project details page
 export const ImageCmp = ({ imgUrl, index }) => {
   return (
     <Image
@@ -57,6 +81,7 @@ export const ImageCmp = ({ imgUrl, index }) => {
       resizeMode="contain"
       style={{
         //!make this responsive
+
         width: 48,
         height: 48,
         marginLeft: index === 0 ? 0 : -SIZES.font,
@@ -65,7 +90,8 @@ export const ImageCmp = ({ imgUrl, index }) => {
   );
 };
 
-export const People = () => {
+//* used for avatar images to display what data collectors are at certain project
+export const DataCollectorAvatars = () => {
   return (
     <View style={{ flexDirection: "row" }}>
       {[assets.person02, assets.person03, assets.person04].map(
@@ -76,7 +102,10 @@ export const People = () => {
     </View>
   );
 };
-export const EndDate = () => {
+
+//* Location of the project which is displayed in the white box in middle right of
+//! eventually needs to be from backend
+export const ProjectLocation = () => {
   return (
     <View
       style={{
@@ -111,6 +140,8 @@ export const EndDate = () => {
     </View>
   );
 };
+
+//* Exporting the two components from above to be used in card component
 export const SubInfo = () => {
   return (
     <View
@@ -122,8 +153,8 @@ export const SubInfo = () => {
         justifyContent: "space-between",
       }}
     >
-      <People />
-      <EndDate />
+      <DataCollectorAvatars />
+      <ProjectLocation />
     </View>
   );
 };

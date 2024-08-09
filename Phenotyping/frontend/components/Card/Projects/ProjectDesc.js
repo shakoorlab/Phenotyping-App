@@ -1,12 +1,14 @@
+//! component used for PROJECT DESCRIPTION and READ MORE after user chooses which project they want
+
 import React, { useState } from "react";
 import { View, Text } from "react-native";
-import { EthPrice, Title } from "../../SubInfo";
+import { DataCollectors, Title } from "../../SubInfo";
 import { COLORS, SIZES, FONTS } from "../../../constants";
 
 const ProjectDesc = ({ data }) => {
   //--------------- logic for the 'read more' ------------------
-  const [text, setText] = useState(data.description.slice(0, 100)); //
-  const [readMore, setReadMore] = useState(false);
+  const [text, setText] = useState(data.description);
+  const [readMore, setReadMore] = useState(true);
   //--------------- logic for the 'read more' ------------------
   return (
     <>
@@ -19,13 +21,13 @@ const ProjectDesc = ({ data }) => {
         }}
       >
         <Title
-          title={data.name}
-          subTitle={data.creator}
+          title={data.project}
+          subTitle={data.location}
           titleSize={SIZES.extraLarge}
           subTitleSize={SIZES.font}
         />
 
-        <EthPrice price={data.price} />
+        <DataCollectors collecting={data.collecting} />
       </View>
 
       <View style={{ marginVertical: SIZES.extraLarge * 1.5 }}>
@@ -59,13 +61,14 @@ const ProjectDesc = ({ data }) => {
                 fontSize: SIZES.small,
                 fontFamily: FONTS.semiBold,
               }}
+              //!on iphone sized devices, have the description start closed
               onPress={() => {
-                if (!readMore) {
+                if (readMore) {
+                  setText(data.description.slice(0, 200));
+                  setReadMore(false);
+                } else {
                   setText(data.description);
                   setReadMore(true);
-                } else {
-                  setText(data.description.slice(0, 100));
-                  setReadMore(false);
                 }
               }}
             >

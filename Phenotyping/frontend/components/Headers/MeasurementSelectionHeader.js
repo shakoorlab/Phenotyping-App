@@ -1,57 +1,51 @@
-import { View, Text, Image, TextInput, TouchableOpacity } from "react-native";
+import {
+  View,
+  Text,
+  Image,
+  TextInput,
+  TouchableOpacity,
+  StyleSheet,
+} from "react-native";
 import { COLORS, FONTS, SIZES } from "../../constants";
 import assets from "../../assets/assets";
-import { CircleButton } from "../../components";
-import { useNavigation } from "@react-navigation/native";
+import { BackButton } from "../../components";
+import { useNavigation, useRoute } from "@react-navigation/native";
 import { useAuth } from "../../context/AuthContext";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
-const MeasurementSelectionHeader = () => {
-  const { user } = useAuth(); // Get the current user from the context
+const MeasurementSelectionHeader = ({ data }) => {
   const navigation = useNavigation();
+  const { user } = useAuth();
+  const insets = useSafeAreaInsets();
+
   return (
     <View
       style={{
-        backgroundColor: COLORS.primary,
         padding: SIZES.font,
+        paddingTop: insets.top + SIZES.small, // Add safe area top inset to padding
       }}
     >
-      <View
-        style={{
-          flexDirection: "row",
-          justifyContent: "space-between",
-          alignItems: "center",
-        }}
-      >
-        {/* //! why does this work?-------- */}
-        <Image
-          // source={assets.storm} //logo on top right of screen
-          resizeMode="contain"
-          style={{ width: 90, height: 25 }}
-        />
-        <CircleButton
-          imgURL={assets.left}
-          handlePress={() => navigation.goBack()}
-          style={{ width: 90, height: 25 }}
-        />
+      <View style={styles.headerContainer}>
+        <TouchableOpacity onPress={() => navigation.goBack()}>
+          <BackButton
+            imgUrl={assets.left}
+            handlePress={() => navigation.goBack()}
+            height={0}
+          />
+        </TouchableOpacity>
 
-        <View style={{ width: 45, height: 45 }}>
+        <View style={styles.avatarContainer}>
           <TouchableOpacity onPress={() => navigation.toggleDrawer()}>
             <Image
-              source={{ uri: user?.imageUrl }}
+              source={{ uri: user?.imageUrl }} // Use the user's randomly assigned image URL
               resizeMode="contain"
-              style={{ width: "100%", height: "100%" }}
+              style={styles.avatarImage}
             />
           </TouchableOpacity>
           <Image
             source={assets.badge}
             resizeMode="contain"
-            style={{
-              position: "absolute",
-              width: 15,
-              height: 15,
-              bottom: 0,
-              right: 0,
-            }}
+            style={styles.badgeImage}
           />
         </View>
       </View>
@@ -59,45 +53,37 @@ const MeasurementSelectionHeader = () => {
       <View style={{ marginVertical: SIZES.font }}>
         <Text
           style={{
-            fontFamily: FONTS.regular,
-            fontSize: SIZES.medium,
+            fontWeight: "700",
+            fontSize: SIZES.extraLarge,
             color: COLORS.white,
           }}
         >
-          Hello User! 👋
+          Select your{" "}
+          <Text style={{ color: "rgb(225, 252, 53)" }}>measurements</Text>
         </Text>
 
         <Text
           style={{
-            fontFamily: FONTS.bold,
-            fontSize: SIZES.large,
-            color: COLORS.white,
+            fontFamily: FONTS.light,
+            fontSize: SIZES.medium,
+            color: COLORS.gray,
             marginTop: SIZES.base / 2,
           }}
         >
-          Season Measurement Type
+          Phenotypic Measurement Selection
         </Text>
       </View>
 
       <View style={{ marginTop: SIZES.font }}>
-        <View
-          style={{
-            width: "100%",
-            borderRadius: SIZES.font,
-            backgroundColor: COLORS.gray,
-            flexDirection: "row",
-            alignItems: "center",
-            paddingHorizontal: SIZES.font,
-            paddingVertical: SIZES.small - 2,
-          }}
-        >
+        <View style={styles.searchContainer}>
           <Image
             source={assets.search}
             resizeMode="contain"
-            style={{ width: 20, height: 20, marginRight: SIZES.base }}
+            style={styles.searchIcon}
           />
           <TextInput
-            placeholder="Search for a specific measurement"
+            placeholder="Search measurements"
+            placeholderTextColor="#e0e0e0"
             style={{ flex: 1 }}
           />
         </View>
@@ -105,5 +91,45 @@ const MeasurementSelectionHeader = () => {
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  headerContainer: {
+    flexDirection: "row",
+    justifyContent: "space-between", // Ensures even spacing between BackButton and Avatar
+    alignItems: "center", // Vertically centers the elements
+  },
+  avatarContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+  },
+  avatarImage: {
+    width: 45,
+    height: 45,
+    borderColor: "lightgreen", // Set border color
+    borderWidth: 2, // Set border width
+    borderRadius: 30,
+  },
+  badgeImage: {
+    position: "absolute",
+    width: 15,
+    height: 15,
+    bottom: 0,
+    right: 0,
+  },
+  searchContainer: {
+    width: "100%",
+    borderRadius: SIZES.font,
+    backgroundColor: COLORS.gray,
+    flexDirection: "row",
+    alignItems: "center",
+    paddingHorizontal: SIZES.font,
+    paddingVertical: SIZES.small - 2,
+  },
+  searchIcon: {
+    width: 20,
+    height: 20,
+    marginRight: SIZES.base,
+  },
+});
 
 export default MeasurementSelectionHeader;
