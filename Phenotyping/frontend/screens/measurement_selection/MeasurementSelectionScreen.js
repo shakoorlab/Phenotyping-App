@@ -1,9 +1,10 @@
-import { View, FlatList, Text } from "react-native";
-import { COLORS, SIZES } from "../../constants";
+import { View, FlatList } from "react-native";
+import { COLORS } from "../../constants";
 import { StatusBar } from "expo-status-bar";
 import MeasurementSelectionHeader from "../../components/Headers/MeasurementSelectionHeader";
 import { LinearGradient } from "expo-linear-gradient";
 import MeasurementsHeader from "../../components/Headers/Measurements";
+import ChecklistComponent from "../../components/measurements/Checklist";
 
 const MeasurementSelectionScreen = () => {
   return (
@@ -42,15 +43,15 @@ const MeasurementSelectionScreen = () => {
             colors={["#0B3731", "#0D4A3F"]}
             style={{
               height: 370,
-              borderBottomLeftRadius: 20,
-              borderBottomRightRadius: 20,
+              borderBottomColor: "red",
               overflow: "hidden",
             }}
           />
 
           {/* White background behind card, underneath blue heading */}
-          <View style={{ height: 800, backgroundColor: COLORS.white }} />
+          <View style={{ backgroundColor: COLORS.white }} />
         </View>
+        <ChecklistComponent />
       </View>
     </View>
   );
